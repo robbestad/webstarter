@@ -1,8 +1,13 @@
 {
-  "name": "skeleton-app",
+  "name": "webstarter",
   "version": "0.1.2",
-  "description": "",
+  "description": "A complete web starter project built on modern frontend tech",
+  "license": "SEE LICENSE IN <LICENSE.md>",
   "main": "index.js",
+  "engines": {
+    "node": ">=7.4",
+    "npm" : ">=4"
+  },
   "scripts": {
     "build:dev": "gulp webpack",
     "build:dist": "cross-env NODE_ENV=production webpack -p",
@@ -17,9 +22,13 @@
     "pretest": "npm run lint",
     "test": "mocha --compilers js:babel-core/register ./test/test/**/*"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "webstarter",
+    "inferno",
+    "koa",
+    "webpack"
+  ],
+  "author": "Sven Anders Robbestad <robbestad@gmail.com> (https://www.robbestad.com/)",
   "devDependencies": {
     "babel-core": "^6.22.1",
     "babel-eslint": "^7.1.1",
