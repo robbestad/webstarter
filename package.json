@@ -31,7 +31,6 @@
     "cross-env": "^3.1.4",
     "cross-spawn": "^5.0.1",
     "css-loader": "^0.26.1",
-    "ecstatic": "^2.1.0",
     "eslint": "^3.14.0",
     "eslint-config-nrk": "^5.0.3-beta.0",
     "eslint-plugin-inferno": "^6.9.2",
@@ -48,9 +47,7 @@
   },
   "dependencies": {
     "koa": "2.x",
-    "koa-convert": "^1.2.0",
     "koa-favicon": "2",
-    "koa-send": "^3.3.0",
-    "koa-static-plus": "^0.1.1"
+    "koa-send": "^3.3.0"
   }
 }
