@@ -8,6 +8,7 @@ yarn-error.log*
 
 # dist folder
 static
+build
 
 # Runtime data
 pids

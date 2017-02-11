@@ -1,8 +1,6 @@
 const webpack = require('webpack');
 const isProd = process.env.NODE_ENV === "production";
-const pkg = require('./package.json');
-const path = require('path')
-
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const config = {
   entry: {
@@ -10,14 +8,19 @@ const config = {
   },
   output: {
     filename: '[name].js',
-    path: './public',
+    path: './build',
     chunkFilename: '[name]-[chunkhash].js',
   },
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       minChunks: ({resource}) => /node_modules/.test(resource),
-    })],
+    }),
+    new HtmlWebpackPlugin({
+      title: 'Web Starter',
+      template: 'views/index.ejs',
+    })
+  ],
   module: {},
   resolve: {
     extensions: ['.js', '.jsx'],
@@ -36,7 +39,7 @@ config.module = {
       }
     }
   ]
-}
+};
 
 if (isProd) {
   config.output.path = "./static";
@@ -52,7 +55,7 @@ if (isProd) {
 
       }
     ]
-  }
+  };
   config.plugins.push(
     new webpack.DefinePlugin({
       'process.env': {

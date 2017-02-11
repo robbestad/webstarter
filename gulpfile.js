@@ -1,6 +1,5 @@
 const gulp = require('gulp');
 const exec = require('child_process').exec;
-//const spawn = require('child_process').spawn;
 const spawn = require("cross-spawn");
 
 // Generate minified bundle

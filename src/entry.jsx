@@ -8,9 +8,9 @@ const englishStore = observable({
 });
  
 const frenchStore = observable({
-    title: 'Bonjour tout le monde'
+    title: 'Bonjour tout le monn'
 });
  
 Inferno.render(<Provider englishStore={ englishStore } frenchStore={ frenchStore }>
     <MyComponent/>
-</Provider>, document.getElementById('root'))
+</Provider>, document.getElementById('root'));
