@@ -6,7 +6,7 @@ const path = require('path')
 
 const config = {
   entry: {
-    app: './src/entry.js',
+    app: './src/entry.jsx',
   },
   output: {
     filename: '[name].js',
