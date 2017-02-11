@@ -2,12 +2,11 @@ import Inferno from 'inferno'
 import Component from 'inferno-component'
 import { connect } from 'inferno-mobx'
 
-@connect(['englishStore', 'frenchStore'])
+@connect(['titleStore'])
 export default class Main extends Component {
-  render({ englishStore, frenchStore }) {
+  render({ titleStore }) {
     return <div>
-      <p>{ englishStore.title }</p>
-      <p>{ frenchStore.title }</p>
+      <p>{ titleStore.title }</p>
     </div>
   }
 }

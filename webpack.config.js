@@ -35,8 +35,8 @@ config.module = {
       exclude: /(node_modules)/,
       loader: 'babel-loader',
       query: {
-        presets: ['es2015'],
-        plugins: ['inferno', 'babel-plugin-transform-decorators-legacy']
+        presets: ['es2015', 'stage-0'],
+        plugins: ['inferno', 'transform-decorators-legacy']
       }
     }
   ]
@@ -51,8 +51,8 @@ if (isProd) {
         test: /\.jsx?$/,
         loader: 'babel-loader',
         query: {
-          presets: ['es2015'],
-          plugins: ['inferno', 'babel-plugin-transform-decorators-legacy']
+          presets: ['es2015', 'stage-0'],
+          plugins: ['inferno', 'transform-decorators-legacy']
         }
 
       }

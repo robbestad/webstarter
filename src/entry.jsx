@@ -1,16 +1,8 @@
 import Inferno from 'inferno'
-import { Provider } from 'inferno-mobx'
-import { observable } from 'mobx'
+import {Provider} from 'inferno-mobx'
 import MyComponent from './mycomponent'
- 
-const englishStore = observable({
-    title: 'Hello World!'
-});
- 
-const frenchStore = observable({
-    title: 'Bonjour tout le monn'
-});
- 
-Inferno.render(<Provider englishStore={ englishStore } frenchStore={ frenchStore }>
-    <MyComponent/>
+import TitleStore from './stores/title';
+
+Inferno.render(<Provider titleStore={  new TitleStore('Web Starter!') } >
+  <MyComponent/>
 </Provider>, document.getElementById('root'));
