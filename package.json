@@ -1,12 +1,12 @@
 {
   "name": "webstarter",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "A complete web starter project built on modern frontend tech",
   "license": "SEE LICENSE IN <LICENSE.md>",
   "main": "index.js",
   "engines": {
     "node": ">=7.4",
-    "npm" : ">=4"
+    "npm": ">=4"
   },
   "scripts": {
     "build:dev": "gulp webpack",
