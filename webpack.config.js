@@ -6,6 +6,7 @@ const config = {
   entry: {
     app: './src/entry.jsx',
   },
+  devtool:"source-map",
   output: {
     filename: '[name].js',
     path: './build',
@@ -43,6 +44,7 @@ config.module = {
 
 if (isProd) {
   config.output.path = "./static";
+  config.devtool = "none";
   config.module = {
     rules: [
       {

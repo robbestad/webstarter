@@ -12,13 +12,11 @@ A project that gets you started with the latest and greatest frontend tech.
 
 1. Clone project with ```git clone https://github.com/svenanders/webstarter.git```
 
-2. Install dependencies (preferably with *yarn*, but plain plain old *npm* also works fine).
+2. Install dependencies (preferably with *yarn*, but plain old *npm* also works fine).    Yarn can be downloaded from [yarnpkg.com](https://yarnpkg.com/lang/en/) or installed via Brew if on Mac
        
-        With Yarn: $ yarn install
-        With npm: $ npm install
+        With yarn: $ yarn install
+        With npm:  $ npm install
     
-   Yarn can be downloaded from [yarnpkg.com](https://yarnpkg.com/lang/en/) or installed via Brew if on Mac
-
 3. Start project with ```npm run dev``` (defaults to port 5000 and can be displayed on [localhost:5000](http://localhost:5000))
 
 4. Distribution build is generated with ```npm start``` and defaults to port 1997. It will generate tiny, optimized vendor and app bundles and a minimized index.html.
