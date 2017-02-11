@@ -15,26 +15,27 @@ const config = {
   },
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({
-    name: 'vendor',
-    minChunks: ({resource}) => /node_modules/.test(resource),
-  })],
-
-  module: { }
+      name: 'vendor',
+      minChunks: ({resource}) => /node_modules/.test(resource),
+    })],
+  module: {},
+  resolve: {
+    extensions: ['.js', '.jsx'],
+  }
 };
 
 config.module = {
-    rules: [
-      {
-        test: /\.jsx?$/,
-        exclude: /(node_modules)/,
-        loader: 'babel-loader',
-        query: {
-          presets: ['es2015'],
-          plugins: ['inferno','babel-plugin-transform-decorators-legacy']
-        }
-
+  rules: [
+    {
+      test: /\.jsx?$/,
+      exclude: /(node_modules)/,
+      loader: 'babel-loader',
+      query: {
+        presets: ['es2015'],
+        plugins: ['inferno', 'babel-plugin-transform-decorators-legacy']
       }
-    ]
+    }
+  ]
 }
 
 if (isProd) {
@@ -46,7 +47,7 @@ if (isProd) {
         loader: 'babel-loader',
         query: {
           presets: ['es2015'],
-          plugins: ['inferno','babel-plugin-transform-decorators-legacy']
+          plugins: ['inferno', 'babel-plugin-transform-decorators-legacy']
         }
 
       }
