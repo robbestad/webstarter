@@ -10,6 +10,13 @@ yarn-error.log*
 static
 build
 
+# config
+config/config.js
+
+# temp images
+temp/*.jpg
+temp/*.png
+
 # Runtime data
 pids
 *.pid
