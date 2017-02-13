@@ -23,7 +23,9 @@ export default class Camera extends Component {
       userData: '',
       detectedFaces: null,
       faceDataFound: false,
-      currentImg: null
+      currentImg: null,
+      sw: 0,
+      sh: 0
     };
     this.camera = null;
     this.photoCanvas = null;
@@ -43,23 +45,17 @@ export default class Camera extends Component {
     const canvas = this.photoCanvas;
     let w = img.width;
     let h = img.height;
-
     const {sw, sh} = resizeImage(w, h, 600, 600);
-    // const sw = w;
-    // const sh = h;
     let tempCanvas = document.createElement('canvas');
     let tempCtx = tempCanvas.getContext('2d');
     tempCanvas.width = sw;
-    tempCanvas.height =
-      sh;
+    tempCanvas.height = sh;
     tempCtx.drawImage(img, 0, 0, sw, sh);
     ImageToCanvas.drawCanvas(canvas, img, orientation, sw, sh, 1, 0, false);
-    // const dimg = document.createElement('img');
-    // dimg.src = img.src;
-    // dimg.width = sw;
-    // dimg.height = sh;
-    // document.body.appendChild(dimg);
-
+    this.setState({
+      sw,
+      sh
+    })
   }
 
   takePhoto(event) {
@@ -143,11 +139,27 @@ export default class Camera extends Component {
           const data = JSON.stringify(res.body);
           res.body.map(e => {
             console.log(e);
+            console.log("storedImage", this.state.storedImage, this.state.sw, this.state.sh);
+            // let img = new Image;
+            // img.onload =  () => {
+            //  // ImageToCanvas.drawCanvas(canvas,img, 1, this.state.sw, this.state.sh, 1, 0, false);
+            //
+            //   ctx.drawImage(img, 0, 0,this.state.sw, this.state.sh);
+            //   ctx.beginPath();
+            //   ctx.fillStyle = "red";
+            //   ctx.globalAlpha = 0.4;
+            //   ctx.fillRect(e.faceRectangle.left, e.faceRectangle.top, e.faceRectangle.width, e.faceRectangle.height);
+            //   ctx.globalAlpha = 1.0;
+            //
+            // };
+            // img.src = "https://res.cloudinary.com/sven-anders-robbestad/image/upload/c_scale,w_337,h_600/v1487015753/facer/1487015753680.png";
+
             ctx.beginPath();
             ctx.fillStyle = "red";
             ctx.globalAlpha = 0.4;
             ctx.fillRect(e.faceRectangle.left, e.faceRectangle.top, e.faceRectangle.width, e.faceRectangle.height);
             ctx.globalAlpha = 1.0;
+
 
             // ctx.fillStyle = "red";
             // ctx.globalAlpha = 0.2;
