@@ -1,15 +1,29 @@
 const webpack = require('webpack');
 const isProd = process.env.NODE_ENV === "production";
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const path = require('path');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+//   const InlineChunkWebpackPlugin = require('html-webpack-inline-chunk-plugin');
+//   filename: '[name].[chunkhash].js',
+//   path: './build',
+//   chunkFilename: '[chunkhash].js',
+//
+// plugins:
+//   new InlineChunkWebpackPlugin({
+//     inlineChunks: ['manifest','app']
+//   })
 
 const config = {
   entry: {
     app: './src/entry.jsx',
   },
-  devtool:"source-map",
+  devtool: "source-map",
   output: {
     filename: '[name].js',
-    path: './build',
+    path: path.join(__dirname, './build'),
+    publicPath: '/',
     chunkFilename: '[name]-[chunkhash].js',
   },
   plugins: [
@@ -20,7 +34,11 @@ const config = {
     new HtmlWebpackPlugin({
       title: 'Web Starter',
       template: 'views/index.ejs',
-    })
+    }),
+    new CopyWebpackPlugin([
+      {from: 'common', to: ''}
+    ]),
+    new ExtractTextPlugin('[name].bundle.css'),
   ],
   module: {},
   resolve: {
@@ -38,12 +56,18 @@ config.module = {
         presets: ['es2015', 'stage-0'],
         plugins: ['inferno', 'transform-decorators-legacy']
       }
+    },
+    {
+      test: /\.css$/,
+      loader: ExtractTextPlugin.extract({
+        loader: 'css-loader?importLoaders=1!postcss-loader'
+      })
     }
   ]
 };
 
 if (isProd) {
-  config.output.path = "./static";
+  config.output.path = path.join(__dirname, './static');
   config.devtool = "none";
   config.module = {
     rules: [
@@ -54,7 +78,12 @@ if (isProd) {
           presets: ['es2015', 'stage-0'],
           plugins: ['inferno', 'transform-decorators-legacy']
         }
-
+      },
+      {
+        test: /\.css$/,
+        loader: ExtractTextPlugin.extract({
+          loader: 'css-loader?importLoaders=1!postcss-loader'
+        })
       }
     ]
   };

@@ -1,0 +1,8 @@
+/* shared/colors.css */
+:root {
+    --font-size: 21px;
+    --white: #ECF1F1;
+    --darkBg: #046380;
+    --lightBg: #44A3C8;
+    --lightClrFont: #F8F7F7
+}
