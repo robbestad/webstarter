@@ -12,10 +12,12 @@ cloudinary.config({
 const upload = (body) => {
   return new Promise((resolve, reject) => {
     const tempName = new Date().getTime();
+    console.log(body.photo);
     const imageBuffer = decodeBase64Image(body.photo);
     fs.writeFile('temp/' + tempName + '.jpg', imageBuffer.data, err => {
       if (err) reject(err);
       cloudinary.uploader.upload('temp/' + tempName + '.jpg', result => {
+          console.log("result from cloudinary");
           console.log(result);
           resolve(result.secure_url);
         },
