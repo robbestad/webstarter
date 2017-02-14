@@ -2,6 +2,7 @@ const decodeBase64Image = require('./decodeBase64Image');
 const cloudinary = require('cloudinary');
 const config = require('./config/config');
 const fs = require('fs');
+const {resizeImage} = require('./src/helperfncs');
 
 cloudinary.config({
   cloud_name: config.cloudinary.cloud_name,
@@ -23,7 +24,16 @@ const upload = (body) => {
           if (result.width > 1000) {
             imageUrl = result.secure_url.replace('upload/', 'upload/c_scale,w_1000/');
           }
-          resolve(imageUrl);
+          const {width, height} = result;
+          const {sw, sh} = resizeImage(width, height, 1000, 1000);
+
+          resolve({
+            width,
+            height,
+            sw,
+            sh,
+            imageUrl
+          });
         },
         {public_id: "facer/" + tempName});
     });

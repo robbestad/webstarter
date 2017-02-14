@@ -8,6 +8,12 @@ const {getOrientation} = require('./components/getorientation');
 const {serializeImage} = require('./components/serializeimage');
 const decodeBase64Image = require('../decodeBase64Image');
 
+const noop = () => {
+};
+const debug = (params = []) => process.env.NODE_ENV !== 'production' ? params.forEach(m => console.log(m)) : noop;
+let uri = "test";
+debug(['sending url', uri]);
+
 export default class Camera extends Component {
   constructor() {
     super();
@@ -46,17 +52,19 @@ export default class Camera extends Component {
     const canvas = this.photoCanvas;
     let w = img.width;
     let h = img.height;
-    const {sw, sh} = resizeImage(w, h, 600, 600);
+    const {sw, sh} = resizeImage(w, h, 1000, 1000);
     let tempCanvas = document.createElement('canvas');
     let tempCtx = tempCanvas.getContext('2d');
     tempCanvas.width = sw;
     tempCanvas.height = sh;
     tempCtx.drawImage(img, 0, 0, sw, sh);
-    ImageToCanvas.drawCanvas(canvas, img, orientation, sw, sh, 1, 0, false);
+
+    ImageToCanvas.drawCanvas(canvas, toJPG(tempCanvas), orientation, sw, sh, 1, 0, false);
     this.setState({
       sw,
       sh
-    })
+    });
+    debug(['sw,sh', sw, sh]);
   }
 
   takePhoto(event) {
@@ -66,19 +74,6 @@ export default class Camera extends Component {
       file = files[0];
       const fileReader = new FileReader();
       fileReader.onload = (event) => {
-        // fetch("/upload",
-        //   {
-        //     method: "POST",
-        //     body: {photo: event.target.result},
-        //     headers: {
-        //       'Accept': 'application/json',
-        //       'Content-Type': 'application/x-www-form-urlencoded'
-        //     }
-        //   })
-        //   .then(function(res){ console.log('RES', res.json()); })
-        //   .then(function(data){ alert( JSON.stringify( data ) ) });
-
-
         request
           .post('/upload')
           .send({photo: event.target.result})
@@ -88,10 +83,16 @@ export default class Camera extends Component {
               console.log(err);
             }
             console.log("res", res.text);
+            const {
+              imageUrl, width, height, sw, sh
+            } = JSON.parse(res.text);
+            debug([
+              imageUrl, width, height, sw, sh
+            ]);s
             this.setState({
-              storedImage: res.text
+              storedImage: imageUrl
             });
-            this.faceRecog(res.text);
+            this.faceRecog(imageUrl, width / sw, height / sh);
           });
 
         const img = new Image();
@@ -110,10 +111,10 @@ export default class Camera extends Component {
   }
 
 
-  faceRecog(url) {
+  faceRecog(url, ws, wh) {
     let canvas = this.photoCanvas;
     const ctx = canvas.getContext("2d");
-    const dataURL = canvas.toDataURL();
+    // const dataURL = canvas.toDataURL();
 
     this.setState({
       spinnerDisplay: true
@@ -123,6 +124,7 @@ export default class Camera extends Component {
     // There's two ways to send images to the cognitive API.
     // 1. Send a Image URL (need to set Content-Type as application/json)
     // 2. Send a binary (need to set Content-Type as octet-stream). The image need to be serialized.
+    // debug({'sending url',url});
     request
       .post('https://westus.api.cognitive.microsoft.com/face/v1.0/detect?returnFaceId=true&returnFaceLandmarks=true')
       // .send(serializeImage(dataURL))
@@ -158,9 +160,8 @@ export default class Camera extends Component {
             ctx.beginPath();
             ctx.fillStyle = "red";
             ctx.globalAlpha = 0.4;
-            ctx.fillRect(e.faceRectangle.left, e.faceRectangle.top, e.faceRectangle.width, e.faceRectangle.height);
+            ctx.fillRect(~~(e.faceRectangle.left / ws), ~~(e.faceRectangle.top / wh), e.faceRectangle.width, e.faceRectangle.height);
             ctx.globalAlpha = 1.0;
-
 
             // ctx.fillStyle = "red";
             // ctx.globalAlpha = 0.2;
