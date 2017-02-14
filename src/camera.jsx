@@ -132,7 +132,7 @@ export default class Camera extends Component {
       .set('processData', false)
       .set('Accept', 'application/json')
       .end((err, res) => {
-        if (err || !res.ok) {
+        if (<err></err> || !res.ok) {
           // TODO: error logging
           // console.error(err);
         } else {
