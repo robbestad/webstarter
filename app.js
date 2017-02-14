@@ -20,7 +20,7 @@ router
 
 const app = new koa()
   .use(bodyParser({
-    formLimit: '8mb'
+    formLimit: '4mb'
   }))
   .use(favicon(path.join(__dirname, 'static', 'favicon.ico')))
   .use(router.routes())

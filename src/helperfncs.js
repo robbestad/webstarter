@@ -19,9 +19,16 @@ exports.toImg = function(encodedData) {
   return imgElement;
 };
 
-exports.toPng = function(canvas) {
+exports.toPNG = function(canvas) {
   const img = document.createElement('img');
   img.src = canvas.toDataURL('image/png');
+  return img;
+};
+
+
+exports.toJPG = function(canvas) {
+  const img = document.createElement('img');
+  img.src = canvas.toDataURL('image/jpg');
   return img;
 };
 

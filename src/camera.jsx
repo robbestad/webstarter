@@ -3,9 +3,10 @@ import Component from 'inferno-component';
 import classNames from 'classnames';
 import ImageToCanvas from 'imagetocanvas';
 import request from 'superagent';
-const {resizeImage} = require('./helperfncs');
+const {resizeImage, toJPG} = require('./helperfncs');
 const {getOrientation} = require('./components/getorientation');
 const {serializeImage} = require('./components/serializeimage');
+const decodeBase64Image = require('../decodeBase64Image');
 
 export default class Camera extends Component {
   constructor() {
@@ -132,9 +133,9 @@ export default class Camera extends Component {
       .set('processData', false)
       .set('Accept', 'application/json')
       .end((err, res) => {
-        if (<err></err> || !res.ok) {
+        if (err || !res.ok) {
           // TODO: error logging
-          // console.error(err);
+          console.error(err);
         } else {
           const data = JSON.stringify(res.body);
           res.body.map(e => {
