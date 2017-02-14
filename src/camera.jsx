@@ -4,8 +4,8 @@ import classNames from 'classnames';
 import ImageToCanvas from 'imagetocanvas';
 import request from 'superagent';
 const {resizeImage} = require('./helperfncs');
-const {getOrientation} = require('./getOrientation/index');
-const {serializeImage} = require('./serializeImage/index');
+const {getOrientation} = require('./getorientation');
+const {serializeImage} = require('./serializeimage');
 
 export default class Camera extends Component {
   constructor() {
