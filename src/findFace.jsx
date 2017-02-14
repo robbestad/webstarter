@@ -4,8 +4,8 @@ import classNames from 'classnames';
 import ImageToCanvas from 'imagetocanvas';
 import request from 'superagent';
 const {resizeImage} = require('./helperfncs');
-const {getOrientation} = require('./getOrientation');
-const {serializeImage} = require('./serializeImage');
+const {getOrientation} = require('./getOrientation/index');
+const {serializeImage} = require('./serializeImage/index');
 
 // function findSimilar(face) {
 //   // NEEDS A FACE LIST
