@@ -12,14 +12,18 @@ cloudinary.config({
 const upload = (body) => {
   return new Promise((resolve, reject) => {
     const tempName = new Date().getTime();
-    console.log(body.photo);
+    console.log(body.photo.bytes);
     const imageBuffer = decodeBase64Image(body.photo);
     fs.writeFile('temp/' + tempName + '.jpg', imageBuffer.data, err => {
       if (err) reject(err);
       cloudinary.uploader.upload('temp/' + tempName + '.jpg', result => {
           console.log("result from cloudinary");
           console.log(result);
-          resolve(result.secure_url);
+          let imageUrl = result.secure_url;
+          if (result.width > 1000) {
+            imageUrl = result.secure_url.replace('upload/', 'upload/c_scale,w_1000/');
+          }
+          resolve(imageUrl);
         },
         {public_id: "facer/" + tempName});
     });
