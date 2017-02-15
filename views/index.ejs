@@ -1,10 +1,99 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+    <script>
+//      (function (d) {
+//        var config = {
+//            kitId: 'wdz1lvl',
+//            scriptTimeout: 3000,
+//            async: true
+//          },
+//          h = d.documentElement, t = setTimeout(function () {
+//            h.className = h.className.replace(/\bwf-loading\b/g, "") + " wf-inactive";
+//          }, config.scriptTimeout), tk = d.createElement("script"), f = false, s = d.getElementsByTagName("script")[0], a;
+//        h.className += " wf-loading";
+//        tk.src = 'https://use.typekit.net/' + config.kitId + '.js';
+//        tk.async = true;
+//        tk.onload = tk.onreadystatechange = function () {
+//          a = this.readyState;
+//          if (f || a && a != "complete" && a != "loaded")return;
+//          f = true;
+//          clearTimeout(t);
+//          try {
+//            Typekit.load(config)
+//          } catch (e) {
+//          }
+//        };
+//        s.parentNode.insertBefore(tk, s)
+//      })(document);
+    </script>
+    <meta name="theme-color" content="#2E3AA1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <link rel="manifest" href="/manifest.json">
     <title><%= htmlWebpackPlugin.options.title %></title>
 </head>
 <body>
 <div id="root"></div>
+<div id="camera"></div>
+
+<script type="text/javascript">
+//  const appendStylesheet = href => {
+//    let stylesheet = document.createElement('link');
+//    stylesheet.href = href;
+//    stylesheet.rel = 'stylesheet';
+//    stylesheet.type = 'text/css';
+//    document.getElementsByTagName('head')[0].appendChild(stylesheet);
+//  };
+//
+//  appendStylesheet('/app.css');
+
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker
+      .register('/serviceworker.js', {scope: './'})
+      .then(navigator.serviceWorker.ready)
+      .then((registration) => {
+        if (registration.active) {
+          console.info('Service Worker is active');
+        }
+        if (registration.waiting) {
+          console.info('Service Worker is in waiting mode');
+        }
+        if (registration.installing) {
+          console.info('Service Worker is installing');
+        }
+      });
+  }
+
+  if ('storageQuota' in navigator) {
+    navigator.storageQuota.queryInfo("temporary").then(function (info) {
+      console.log('quota in bytes', info.quota);
+      console.log('used data in bytes', info.usage);
+    });
+  }
+//
+//  const asyncLoadImages = ({node, src, width, height, border, className}) => {
+//    const img = new Image();
+//    const container = document.querySelector(node);
+//    img.width = width;
+//    img.height = height;
+//    img.border = border;
+//    img.src = src;
+//    img.className = className || "center";
+//    img.alt = "A bridge";
+//    img.onload = (e) => container.appendChild(img);
+//  };
+
+  //      asyncLoadImages({
+  //        node: '.holder',
+  //        src: '//res.cloudinary.com/sven-anders-robbestad/image/upload/fl_progressive.progressive:steep/v1484659594/Towerdefense_ryhgnm.jpg',
+  //        width: 655,
+  //        height: 364,
+  //        border: 1
+  //      });
+
+</script>
+
+
 </body>
 </html>
