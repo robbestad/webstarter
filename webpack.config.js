@@ -28,8 +28,7 @@ const config = {
     new CopyWebpackPlugin([
       {from: 'common', to: ''}
     ]),
-    new ExtractTextPlugin("styles.css"),
-    // new ExtractTextPlugin('[name].bundle.css')
+    new ExtractTextPlugin("styles.css")
   ],
   module: {},
   resolve: {
@@ -85,9 +84,9 @@ if (isProd) {
       },
       {
         test: /\.scss$/,
-        use: extractCSS.extract({
-          fallback: 'style-loader',
-          use: 'css-loader!sass-loader',
+        use: ExtractTextPlugin.extract({
+          fallback: "style-loader",
+          use: "css-loader!sass-loader"
         })
       }
     ]
