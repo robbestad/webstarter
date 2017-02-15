@@ -13,9 +13,9 @@ function App({ children }) {
     t('h1', null, 'Facer'),
     t('ul', null,
       t('li', null, t(Link, { to: '/camera' }, 'Go to camera')),
-      t('li', null, t(Link, { to: '/identify' }, 'Route to identify'))
+      t('li', null, t(Link, { to: '/identify' }, 'Go to identify'))
     ),
-    t('img', { className: 'myimg' }, ' '),
+    // t('img', { className: 'myimg' }, ' '),
     t('div', null, children ? children : null)
   );
 }
