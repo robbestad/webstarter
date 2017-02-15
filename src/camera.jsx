@@ -1,18 +1,61 @@
-import Inferno from 'inferno';
+import Inferno,{linkEvent} from 'inferno';
 import Component from 'inferno-component';
 import classNames from 'classnames';
 import ImageToCanvas from 'imagetocanvas';
 import request from 'superagent';
-const {resizeImage, toJPG} = require('./helperfncs');
+const {debug, resizeImage, toJPG} = require('./helperfncs');
 const {getOrientation} = require('./components/getorientation');
 const {serializeImage} = require('./components/serializeimage');
 const decodeBase64Image = require('../decodeBase64Image');
 
-const noop = () => {
-};
-const debug = (params = []) => process.env.NODE_ENV !== 'production' ? params.forEach(m => console.log(m)) : noop;
 let uri = "test";
-debug(['sending url', uri]);
+debug('sending url', uri);
+
+function takePhoto (instance, event){
+  let files = event.target.files,
+    file;
+  if (files && files.length > 0) {
+    file = files[0];
+    const fileReader = new FileReader();
+    fileReader.onload = (event) => {
+      request
+        .post('/upload')
+        .send({photo: event.target.result})
+
+        .set('Content-Type', 'application/x-www-form-urlencoded')
+        .end((err, res) => {
+          if (err) {
+            console.log(err);
+          }
+          console.log("res", res.text);
+          const {
+            imageUrl, width, height, sw, sh
+          } = JSON.parse(res.text);
+          debug(
+            imageUrl, width, height, sw, sh
+          );
+          instance.setState({
+            storedImage: imageUrl
+          });
+          instance.faceRecog(imageUrl, width / sw, height / sh);
+        });
+
+      const img = new Image();
+      img.src = event.target.result;
+      img.onload = () => {
+        getOrientation(file, (orientation) => {
+          if (orientation < 0) orientation = 1;
+          instance.putImage(img, orientation);
+          instance.setState({imageLoaded: true});
+        });
+      }
+    };
+
+    fileReader.readAsDataURL(file);
+  }
+}
+
+
 
 export default class Camera extends Component {
   constructor() {
@@ -39,7 +82,6 @@ export default class Camera extends Component {
     this.inputname = '';
     this.inputdata = '';
     this.putImage = this.putImage.bind(this);
-    this.takePhoto = this.takePhoto.bind(this);
     this.faceRecog = this.faceRecog.bind(this);
     this.uploadImage = this.uploadImage.bind(this);
     this.createPersistedFaceID = this.createPersistedFaceID.bind(this);
@@ -52,7 +94,7 @@ export default class Camera extends Component {
     const canvas = this.photoCanvas;
     let w = img.width;
     let h = img.height;
-    const {sw, sh} = resizeImage(w, h, 1000, 1000);
+    const {sw, sh} = resizeImage(w, h, 1500, 1500);
     let tempCanvas = document.createElement('canvas');
     let tempCtx = tempCanvas.getContext('2d');
     tempCanvas.width = sw;
@@ -64,50 +106,7 @@ export default class Camera extends Component {
       sw,
       sh
     });
-    debug(['sw,sh', sw, sh]);
-  }
-
-  takePhoto(event) {
-    let files = event.target.files,
-      file;
-    if (files && files.length > 0) {
-      file = files[0];
-      const fileReader = new FileReader();
-      fileReader.onload = (event) => {
-        request
-          .post('/upload')
-          .send({photo: event.target.result})
-          .set('Content-Type', 'application/x-www-form-urlencoded')
-          .end((err, res) => {
-            if (err) {
-              console.log(err);
-            }
-            console.log("res", res.text);
-            const {
-              imageUrl, width, height, sw, sh
-            } = JSON.parse(res.text);
-            debug([
-              imageUrl, width, height, sw, sh
-            ]);s
-            this.setState({
-              storedImage: imageUrl
-            });
-            this.faceRecog(imageUrl, width / sw, height / sh);
-          });
-
-        const img = new Image();
-        img.src = event.target.result;
-        img.onload = () => {
-          getOrientation(file, (orientation) => {
-            if (orientation < 0) orientation = 1;
-            this.putImage(img, orientation);
-            this.setState({imageLoaded: true});
-          });
-        }
-      };
-
-      fileReader.readAsDataURL(file);
-    }
+    debug('sw,sh', sw, sh);
   }
 
 
@@ -124,7 +123,6 @@ export default class Camera extends Component {
     // There's two ways to send images to the cognitive API.
     // 1. Send a Image URL (need to set Content-Type as application/json)
     // 2. Send a binary (need to set Content-Type as octet-stream). The image need to be serialized.
-    // debug({'sending url',url});
     request
       .post('https://westus.api.cognitive.microsoft.com/face/v1.0/detect?returnFaceId=true&returnFaceLandmarks=true')
       // .send(serializeImage(dataURL))
@@ -143,38 +141,10 @@ export default class Camera extends Component {
           res.body.map(e => {
             console.log(e);
             console.log("storedImage", this.state.storedImage, this.state.sw, this.state.sh);
-            // let img = new Image;
-            // img.onload =  () => {
-            //  // ImageToCanvas.drawCanvas(canvas,img, 1, this.state.sw, this.state.sh, 1, 0, false);
-            //
-            //   ctx.drawImage(img, 0, 0,this.state.sw, this.state.sh);
-            //   ctx.beginPath();
-            //   ctx.fillStyle = "red";
-            //   ctx.globalAlpha = 0.4;
-            //   ctx.fillRect(e.faceRectangle.left, e.faceRectangle.top, e.faceRectangle.width, e.faceRectangle.height);
-            //   ctx.globalAlpha = 1.0;
-            //
-            // };
-            // img.src = "https://res.cloudinary.com/sven-anders-robbestad/image/upload/c_scale,w_337,h_600/v1487015753/facer/1487015753680.png";
-
-            ctx.beginPath();
-            ctx.fillStyle = "red";
+            ctx.fillStyle = "black";
             ctx.globalAlpha = 0.4;
-            ctx.fillRect(~~(e.faceRectangle.left / ws), ~~(e.faceRectangle.top / wh), e.faceRectangle.width, e.faceRectangle.height);
+            ctx.fillRect(~~(e.faceRectangle.left), ~~(e.faceRectangle.top), e.faceRectangle.width, e.faceRectangle.height);
             ctx.globalAlpha = 1.0;
-
-            // ctx.fillStyle = "red";
-            // ctx.globalAlpha = 0.2;
-            // ctx.fillRect(e.faceLandmarks.pupilLeft.x, e.faceLandmarks.pupilLeft.y, 5, 5);
-            // ctx.globalAlpha = 1.0;
-            // ctx.fillStyle = "red";
-            // ctx.globalAlpha = 0.2;
-            // ctx.fillRect(e.faceLandmarks.pupilRight.x, e.faceLandmarks.pupilRight.y, 5, 5);
-            // ctx.globalAlpha = 1.0;
-            //
-            // ctx.globalAlpha = 0.2;
-            // ctx.fillRect(e.faceLandmarks.mouthLeft.x, e.faceLandmarks.mouthRight.y,  e.faceLandmarks.mouthRight.x - e.faceLandmarks.mouthLeft.x, 10);
-            // ctx.globalAlpha = 1.0;
 
 
           });
@@ -382,7 +352,7 @@ export default class Camera extends Component {
           <label className="camera-snap">
             <img src="/assets/camera_bw.svg" className="icon-camera"
                  alt="Click to snap a photo or select an image from your photo roll"/>
-            <input type="file" name="photo" label="Camera" onChange={this.takePhoto}
+            <input type="file" name="photo" label="Camera" onChange={linkEvent(this, takePhoto)}
                    ref={node => {
                      this.camera = node;
                    }}
