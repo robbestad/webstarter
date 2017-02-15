@@ -17,7 +17,7 @@ A project that gets you started with the latest and greatest frontend tech.
         With yarn: $ yarn install
         With npm:  $ npm install
     
-3. Start project with ```npm run dev``` (defaults to port 5000 and can be displayed on [localhost:5000](http://localhost:5000))
+3. Start project with ```npm run dev``` (defaults to port 5001 and can be displayed on [localhost:5001](http://localhost:5001))
 
 4. Distribution build is generated with ```npm start``` and defaults to port 1997. It will generate tiny, optimized vendor and app bundles and a minimized index.html.
 
