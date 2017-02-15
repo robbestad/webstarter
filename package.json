@@ -11,7 +11,7 @@
   "scripts": {
     "build:dev": "cross-env trash build && gulp webpack",
     "build:dist": "cross-env NODE_ENV=production webpack -p",
-    "watch": "cross-env NODE_ENV=development multiview [yarn dev] [gulp webpack-watch]",
+    "watch": "cross-env NODE_ENV=development gulp webpack-watch",
     "dev": "cross-env NODE_ENV=development PORT=5001 node --harmony-async-await index.js",
     "start": "cross-env NODE_ENV=production node --harmony-async-await index.js",
     "preversion": "npm test",
@@ -23,11 +23,11 @@
   "script-info": {
     "build:dev": "Deletes the build folder and builds the dev bundle",
     "build:dist": "Builds the static bundles",
-    "watch": "[MAC only] starts a multiview with the bundler and the web server",
+    "watch": "Starts the gulp webpack watcher",
     "dev": "Starts the dev server",
     "start": "Starts the dist server",
     "version": "Runs the tests and runs the deploy script after the version update",
-    "lint": ""
+    "lint": "Starts Eslint"
   },
   "keywords": [
     "webstarter",
