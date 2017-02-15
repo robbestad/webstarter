@@ -10,10 +10,13 @@ cloudinary.config({
   api_secret: config.cloudinary.api_secret
 });
 
+const maxWidth = 1500;
+const maxHeight = 1500;
+
 const upload = (body) => {
   return new Promise((resolve, reject) => {
     const tempName = new Date().getTime();
-    console.log(body.photo.bytes);
+    console.log(body.photo.length/1024);
     const imageBuffer = decodeBase64Image(body.photo);
     fs.writeFile('temp/' + tempName + '.jpg', imageBuffer.data, err => {
       if (err) reject(err);
@@ -21,11 +24,11 @@ const upload = (body) => {
           console.log("result from cloudinary");
           console.log(result);
           let imageUrl = result.secure_url;
-          if (result.width > 1000) {
+          if (result.width > maxWidth) {
             imageUrl = result.secure_url.replace('upload/', 'upload/c_scale,w_1000/');
           }
           const {width, height} = result;
-          const {sw, sh} = resizeImage(width, height, 1000, 1000);
+          const {sw, sh} = resizeImage(width, height, maxWidth, maxHeight);
 
           resolve({
             width,
