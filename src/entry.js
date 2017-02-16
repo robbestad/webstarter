@@ -1,19 +1,19 @@
 import Sub from './components/sub.js';
 import Inferno from 'inferno';
-const t = require('inferno-create-element');
 import {Router, Route, Link} from 'inferno-router';
 import {createBrowserHistory} from 'history';
 const browserHistory = createBrowserHistory();
-import './scss/entry.scss';
+import './style/entry.css';
 
 function App({children}) {
-  return t('div', null,
-    t('h1', null, 'My App!'),
-    t('ul', null,
-      t('li', null, t(Link, {to: '/sub'}, 'Go to my sub-page')),
-    ),
-    t('div', null, children ? children : null)
-  );
+  return <div>
+    <h1>My App!</h1>
+    <ul>
+
+      <li><Link to="/sub">Go to my sub-page</Link></li>
+    </ul>
+    {children ? children : null}
+  </div>
 }
 
 Inferno.render((

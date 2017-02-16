@@ -1,6 +1,5 @@
-import Inferno from 'inferno';
 const t = require('inferno-create-element');
-import {Router, Route, Link} from 'inferno-router';
+import {Link} from 'inferno-router';
 
 export default function Sub() {
   return t('div', null,
