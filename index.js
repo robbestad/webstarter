@@ -1,3 +1,14 @@
+/**
+ * Bootstrap core and webpack
+ */
+require('./core/helpers/logger');
+require('./core/compile');
+/**
+ * Bootstrap our server
+ */
+
+// require('babel-register');
+// require('./src/server/server');
 const http = require('http');
 const app = require('./app');
 

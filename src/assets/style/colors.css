@@ -1,0 +1,7 @@
+/* shared/typography.css */
+:root {
+    --background-color: #ecf0f1;
+    --main-font-color: #e74c3c;
+    --link-color: #c0392b;
+    --link-active-color: #f39c12;
+}

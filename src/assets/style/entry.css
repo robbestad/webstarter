@@ -1,0 +1,17 @@
+/* Shared */
+@import "./typography.css";
+@import "./colors.css";
+
+body {
+    background: var(--background-color);
+    font-weight: var(--font-weight);
+    line-height: var(--line-height);
+    font-family: var(--font-text);
+    color: var(--main-font-color);
+}
+a{
+    color: var(--link-color);
+    }
+a:focus, a:hover{
+    color: var(--link-active-color);
+}

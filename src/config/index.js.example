@@ -1,0 +1,28 @@
+  const path = require('path')
+const config = {
+  cloudinary: {
+    cloud_name: 'sample',
+    api_key: '123123231231231',
+    api_secret: 'aacmkscmkcmccsacsmk'
+  },
+      http: {
+          port: 2000,
+          favicon: path.join(__dirname, 'assets/favicon.ico'),
+          static: {
+              '/build': path.join(__dirname, '../build'),
+              '/': path.join(__dirname, './assets')
+          }
+      },
+      server: {
+          SSR: true // Server side rendering
+      },
+      session: {
+          secret: 'INFERNAL_SECRET_KEY_KERE',
+          expires: 2 * 3600 * 1000 // 2 hours
+      },
+      databases: {
+          mongo: 'mongodb://127.0.0.1:27017/inferno-starter'
+      }
+
+};
+module.exports = config;

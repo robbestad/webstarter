@@ -4,7 +4,7 @@ const spawn = require("cross-spawn");
 
 // Generate minified bundle
 gulp.task('webpack', function(cb) {
-  exec('webpack', function (err, stdout, stderr) {
+  exec('webpack  --config webpack.config.dev.js', function (err, stdout, stderr) {
     console.log(stdout);
     console.log(stderr);
     cb(err);
@@ -12,7 +12,7 @@ gulp.task('webpack', function(cb) {
 });
 
 gulp.task('webpack-watch', (cb) => {
-  const webpack_watch = spawn('webpack', ['--watch']);
+  const webpack_watch = spawn('webpack', ['--watch','--config', 'webpack.config.dev.js']);
 
   webpack_watch.stdout.on('data', (data) => {
     console.log(`stdout: ${data}`);

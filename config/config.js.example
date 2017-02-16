@@ -1,8 +1,0 @@
-const config = {
-  cloudinary: {
-    cloud_name: 'sample',
-    api_key: '123123231231231',
-    api_secret: 'aacmkscmkcmccsacsmk'
-  }
-};
-module.exports = config;

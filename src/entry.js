@@ -3,11 +3,13 @@ import Inferno from 'inferno';
 import {Router, Route, Link} from 'inferno-router';
 import {createBrowserHistory} from 'history';
 const browserHistory = createBrowserHistory();
-import './style/entry.css';
-
+import './assets/style/entry.css';
+if (module.hot) {
+  require('inferno-devtools')
+}
 function App({children}) {
   return <div>
-    <h1>My App!</h1>
+    <h1>My app</h1>
     <ul>
 
       <li><Link to="/sub">Go to my sub-page</Link></li>
@@ -24,3 +26,7 @@ Inferno.render((
   </Router>
 ), document.getElementById('root'));
 
+if (module.hot) {
+  module.hot.accept();
+  require('inferno-devtools')
+}

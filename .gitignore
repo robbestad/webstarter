@@ -11,11 +11,13 @@ static
 build
 
 # config
-config/config.js
+config/index.js
+src/config/index.js
 
 # temp images
 temp/*.jpg
 temp/*.png
+.nyc_output
 
 # Runtime data
 pids
