@@ -23,7 +23,6 @@ router
     await send(ctx, root + ctx.path);
   });
 
-
 const app = new koa()
   .use(favicon(path.join(__dirname, root, 'favicon.ico')))
   .use(router.routes())
@@ -39,15 +38,12 @@ const app = new koa()
   }))
   .use(catcher);
 
-// .use(serve(`${__dirname}/assets`))
-//   .use(serve(`${__dirname}/${isProd ? 'static' : 'build'}`));
-
 if (!isProd) {
 
 // Run DEV server for hot-reloading
   const WebpackDevServer = require('webpack-dev-server');
   const webpack = require('webpack');
-  const config = require('./webpack.config.dev.js');
+  const config = require('./core/webpack.config.dev.js');
   const logger = require('debug');
 //---------------------------------
   const compiler = webpack(config);

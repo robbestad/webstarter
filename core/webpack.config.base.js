@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const path = require('path');
 const logger = require('debug');
-const sources = (location) => path.join(__dirname, './src', location);
+// const sources = (location) => path.join(__dirname, '..', '/src', location);
 
 const {
   CommonChunksPlugin,
@@ -15,13 +15,12 @@ const {
   ExtractPlugin,
   BabelRule,
   CSSRule
-} = require('./webpack.plugins');
-
+} = require(path.join(__dirname, 'webpack.plugins'));
 
 module.exports = {
   output: {
     filename: '[name].js',
-    path: path.join(__dirname, './build'),
+    path: path.join(__dirname, '..', 'build'),
     publicPath: '/',
     chunkFilename: '[name]-[chunkhash].js',
   },
@@ -41,8 +40,8 @@ module.exports = {
   },
   resolve: {
     extensions: ['.js', '.jsx'],
-    alias: {
-      'core': path.join(__dirname, './')
-    }
+    // alias: {
+    //   'core': path.join(__dirname, '..', 'core')
+    // }
   }
 };

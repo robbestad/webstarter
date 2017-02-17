@@ -217,6 +217,7 @@ self.addEventListener('fetch', function (event) {
         }).catch(function (e) {
           // Fall back to just fetch()ing the request if some unexpected error
           // prevented the cached response from being valid.
+          //eslint-disable-next-line no-console
           console.warn('Couldn\'t serve response for "%s" from cache: %O', event.request.url, e);
           return fetch(event.request);
         })

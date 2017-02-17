@@ -4,13 +4,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-
+console.log('got plugins!*******');
 exports.HMRPlugin = new webpack.HotModuleReplacementPlugin();
-
-// exports.commonChunksPlugin = new webpack.optimize.CommonsChunkPlugin({
-//   name: 'vendor',
-//   minChunks: ({resource}) => /node_modules/.test(resource),
-// });
 
 exports.WebpackPlugin = new HtmlWebpackPlugin({
   title: 'Web Starter',
@@ -86,7 +81,7 @@ exports.BabelRule = isProd ? {
   } : {
     test: /\.jsx?$/,
     loader: 'babel-loader',
-    include: [path.join(__dirname, 'src')],
+    include: [path.join(__dirname, '..', 'src')],
     query: {
       presets: [],
       plugins: [

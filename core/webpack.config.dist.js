@@ -10,9 +10,9 @@ const glob = require('glob');
 
 // sw-precache-webpack-plugin configurations
 const SW_PRECACHE_CONFIG = {
-  filename: 'src/assets/service',
+  filename: '../src/assets/service',
   cacheId: 'webstarter-cache',
-  filepath: path.join(__dirname, 'static', 'service-worker.js'),
+  filepath: path.join(__dirname, '..', 'static', 'service-worker.js'),
   maximumFileSizeToCacheInBytes: 4194304,
   dynamicUrlToDependencies: {
     '/': [
@@ -39,11 +39,11 @@ Object.assign(config, {
   cache: false,
   devtool: 'source-map',
   entry: {
-    bundle: path.join(__dirname, './src/entry.js')
+    bundle: path.join(__dirname, '../src/entry.js')
   },
   output: {
     filename: '[name]-[hash:8].js',
-    path: path.join(__dirname, './static'),
+    path: path.join(__dirname, '../static'),
     publicPath: '/',
     chunkFilename: '[name]-[chunkhash].js'
   }
