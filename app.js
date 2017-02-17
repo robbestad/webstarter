@@ -5,7 +5,6 @@ const favicon = require('koa-favicon');
 const send = require('koa-send');
 const isProd = process.env.NODE_ENV === "production";
 const root = isProd ? "static/" : "build/";
-const serve = require("koa-static");
 require('colors');
 const Router = require('koa-router');
 const router = new Router();

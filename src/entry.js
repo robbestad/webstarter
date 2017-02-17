@@ -6,7 +6,7 @@ const browserHistory = createBrowserHistory();
 import './assets/style/entry.css';
 import runtime from 'serviceworker-webpack-plugin/lib/runtime';
 
-if ('serviceWorker' in navigator) {
+if (!module.hot && 'serviceWorker' in navigator) {
   runtime.register();
 }
 
@@ -18,7 +18,7 @@ function App({children}) {
     <h1>My app</h1>
     <ul>
 
-      <li><Link to="/sub">Go to my sub-page</Link></li>
+      <li><Link to="/sub">Go deep</Link></li>
     </ul>
     {children ? children : null}
   </div>

@@ -1,9 +1,5 @@
-const webpack = require('webpack');
 const isProd = process.env.NODE_ENV === "production";
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 const path = require('path');
-const logger = require('debug');
 
 const {
   CommonChunksPlugin,

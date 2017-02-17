@@ -1,4 +1,3 @@
-const webpack = require('webpack');
 const path = require('path');
 const config = require(path.join(__dirname, 'webpack.config.base.js'));
 const logger = require('debug');
