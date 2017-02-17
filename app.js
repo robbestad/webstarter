@@ -17,9 +17,9 @@ const config = require('./src/config/index');
 
 router
   .get('*', async function (ctx) {
-    if ('/' == ctx.path) await send(ctx, root + "/index.html");
-    if (ctx.path.startsWith("/assets")) await send(ctx, ctx.path);
-    if (ctx.path.endsWith("/sub")) await send(ctx, root + "/index.html");
+    if ('/' == ctx.path) await send(ctx, root + "index.html");
+    // if (ctx.path.startsWith("/assets")) await send(ctx, root + ctx.path);
+    if (ctx.path.endsWith("/sub")) await send(ctx, root + "index.html");
     await send(ctx, root + ctx.path);
   });
 

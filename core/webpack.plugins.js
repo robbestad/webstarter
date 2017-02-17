@@ -4,7 +4,17 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const ServiceWorkerWebpackPlugin = require('serviceworker-webpack-plugin');
+
+const glob = require('glob');
+
 exports.HMRPlugin = new webpack.HotModuleReplacementPlugin();
+
+exports.ServiceWorkerPlugin = new ServiceWorkerWebpackPlugin({
+  entry: path.join(__dirname, '..', 'src/assets/serviceworker.js'),
+});
+
+exports.SWPrecacheWebpackPlugin = new SWPrecacheWebpackPlugin(SW_PRECACHE_CONFIG);
 
 exports.WebpackPlugin = new HtmlWebpackPlugin({
   title: 'Web Starter',

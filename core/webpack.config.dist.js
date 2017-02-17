@@ -4,34 +4,7 @@ const webpack = require('webpack');
 const config = require('./webpack.config.base.js');
 const ExtractCSS = require('extract-text-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
-const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 const glob = require('glob');
-
-
-// sw-precache-webpack-plugin configurations
-const SW_PRECACHE_CONFIG = {
-  filename: '../src/assets/service',
-  cacheId: 'webstarter-cache',
-  filepath: path.join(__dirname, '..', 'static', 'service-worker.js'),
-  maximumFileSizeToCacheInBytes: 4194304,
-  dynamicUrlToDependencies: {
-    '/': [
-      ...glob.sync(`[name]-[hash:8].js`),
-      ...glob.sync(`[name]-[contenthash:8].css`)
-    ]
-  },
-  navigateFallback: '/',
-  navigateFallbackWhitelist: [/^\/page\//],
-  staticFileGlobsIgnorePatterns: [/(\.map|\.json)$/],
-  mergeStaticsConfig: false,
-  minify: false, //set to "true" when going on production
-  // runtimeCaching: [{
-  //   urlPattern: /^http:\/\/localhost:2000\/api/,
-  //   Use network first and cache as a fallback
-  // handler: 'networkFirst'
-  // }],
-};
-
 
 // Merge with base configuration
 //-------------------------------
@@ -96,8 +69,7 @@ config.plugins.push(
   }),
   new ManifestPlugin({
     fileName: 'build-manifest.json'
-  }),
-  new SWPrecacheWebpackPlugin(SW_PRECACHE_CONFIG)
+  })
 );
 
 // Sanity checks
