@@ -12,9 +12,11 @@ exports.HMRPlugin = new webpack.HotModuleReplacementPlugin();
 
 exports.ServiceWorkerPlugin = new ServiceWorkerWebpackPlugin({
   entry: path.join(__dirname, '..', 'src/assets/serviceworker.js'),
+  excludes: [
+    '**/.*',
+    '**/*.map'
+  ],
 });
-
-exports.SWPrecacheWebpackPlugin = new SWPrecacheWebpackPlugin(SW_PRECACHE_CONFIG);
 
 exports.WebpackPlugin = new HtmlWebpackPlugin({
   title: 'Web Starter',
@@ -22,10 +24,14 @@ exports.WebpackPlugin = new HtmlWebpackPlugin({
   inject: true,
   appMountId: 'root',
   serviceWorker: 'src/assets/service.js',
+  minify: {
+    removeComments: isProd,
+    collapseWhitespace: isProd,
+  }
 });
 
 exports.CopyPlugin = new CopyWebpackPlugin([
-  {from: 'src/assets', to: './assets'}],
+    {from: 'src/assets', to: './assets'}],
   {ignore: ['**/*.css', '*service.js']},
   {copyUnmodified: isProd}
 );

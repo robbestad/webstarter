@@ -12,7 +12,6 @@ const {
   WebpackPlugin,
   CopyPlugin,
   ExtractPlugin,
-  SWPrecacheWebpackPlugin,
   ServiceWorkerPlugin,
   BabelRule,
   CSSRule
@@ -21,7 +20,7 @@ const {
 module.exports = {
   output: {
     filename: '[name].js',
-    path: path.join(__dirname, '..', 'build'),
+    path: path.join(__dirname, '..', isProd ? 'static': 'build'),
     publicPath: '/',
     chunkFilename: '[name]-[chunkhash].js',
   },

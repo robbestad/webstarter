@@ -9,8 +9,11 @@ const glob = require('glob');
 // Merge with base configuration
 //-------------------------------
 Object.assign(config, {
+  devtool: 'none',
+  performance: {
+    hints: false
+  },
   cache: false,
-  devtool: 'source-map',
   entry: {
     bundle: path.join(__dirname, '../src/entry.js')
   },
@@ -21,6 +24,7 @@ Object.assign(config, {
     chunkFilename: '[name]-[chunkhash].js'
   }
 });
+
 
 // Production plugins for old browsers
 //------------------------------------
@@ -112,8 +116,8 @@ compiler.run(function (err, stats) {
  */
 function writeWebpackStats(stats) {
   const {resolve} = require('path');
-  const location = resolve(config.output.path, 'stats.json')
-  require('fs').writeFileSync(location, JSON.stringify(stats.toJson()))
+  const location = resolve(config.output.path, 'stats.json');
+  require('fs').writeFileSync(location, JSON.stringify(stats.toJson()));
   logger('webpack:compiler')(`Wrote stats.json to ${location}`)
 }
 
