@@ -15,8 +15,7 @@
     "webpack-watch": "cross-env NODE_ENV=development gulp webpack-watch",
     "dev": "cross-env trash build && concurrently --kill-others \"npm run webpack-watch\" \"npm run webserver\"",
     "webserver": "cross-env NODE_ENV=development PORT=5001 node --harmony-async-await index.js",
-    "prod": "cross-env NODE_ENV=production node index.js",
-    "start": "cross-env NODE_ENV=production node --harmony-async-await index.js",
+    "start": "cross-env NODE_ENV=production npm run build:dist",
     "preversion": "npm test",
     "postversion": "sh scripts/deploy.sh ",
     "lint": "eslint ./src --ext=.js,.jsx",
@@ -29,7 +28,7 @@
     "build:dist": "Builds the static bundles",
     "webpack-watch": "Starts the gulp webpack watcher",
     "dev": "Starts the dev server and the webpack watcher",
-    "start": "Starts the dist server",
+    "start": "Starts build:dist and prod server",
     "version": "Runs the tests and runs the deploy script after the version update",
     "lint": "Starts Eslint"
   },
