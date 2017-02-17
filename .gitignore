@@ -15,8 +15,7 @@ config/index.js
 src/config/index.js
 
 # temp images
-temp/*.jpg
-temp/*.png
+temp/*
 .nyc_output
 
 # Runtime data

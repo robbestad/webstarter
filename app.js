@@ -24,7 +24,7 @@ router
   });
 
 const app = new koa()
-  .use(favicon(path.join(__dirname, root, 'favicon.ico')))
+  .use(favicon(path.join(__dirname, root, 'assets/icons/favicon.ico')))
   .use(router.routes())
   .use(router.allowedMethods())
   .use(convert(bodyParser({

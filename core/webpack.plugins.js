@@ -4,7 +4,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-console.log('got plugins!*******');
 exports.HMRPlugin = new webpack.HotModuleReplacementPlugin();
 
 exports.WebpackPlugin = new HtmlWebpackPlugin({
@@ -16,8 +15,10 @@ exports.WebpackPlugin = new HtmlWebpackPlugin({
 });
 
 exports.CopyPlugin = new CopyWebpackPlugin([
-  {from: 'common', to: ''}
-]);
+  {from: 'src/assets', to: './assets'}],
+  {ignore: ['**/*.css', '*service.js']},
+  {copyUnmodified: isProd}
+);
 
 exports.ExtractPlugin = new ExtractTextPlugin("styles.css");
 

@@ -4,7 +4,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const path = require('path');
 const logger = require('debug');
-// const sources = (location) => path.join(__dirname, '..', '/src', location);
 
 const {
   CommonChunksPlugin,

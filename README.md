@@ -30,9 +30,9 @@ This file is excluded from git.
 
 The source lives in the ```src``` folder.
 
-The index.html is generated from the ```views/index.ejs``` template.
+The index.html is generated from the ```src/templtes/default.ejs``` template.
 
-Any asset you want to add -- for instance css, local images and so on -- should be placed in the ```assets``` folder and 
+Any asset you want to add -- for instance css, local images and so on -- should be placed in the ```src/assets``` folder and 
 referenced with ```/assets/``` preceding the file name.
 
 ## License
