@@ -20,6 +20,7 @@ Object.assign(config, {
     chunkFilename: '[name]-[chunkhash].js',
   }
 });
+
 logger('webpack:compiler')('Running on port ' + process.env.PORT);
 
 module.exports = config;

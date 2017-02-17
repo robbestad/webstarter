@@ -4,11 +4,6 @@ import {Router, Route, Link} from 'inferno-router';
 import {createBrowserHistory} from 'history';
 const browserHistory = createBrowserHistory();
 import './assets/style/entry.css';
-import runtime from 'serviceworker-webpack-plugin/lib/runtime';
-
-if (!module.hot && 'serviceWorker' in navigator) {
-  runtime.register();
-}
 
 if (module.hot) {
   require('inferno-devtools')

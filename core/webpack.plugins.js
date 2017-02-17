@@ -4,17 +4,30 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const ServiceWorkerWebpackPlugin = require('serviceworker-webpack-plugin');
+const ServiceWorkerPrecachePlugin = require('sw-precache-webpack-plugin');
 
 exports.HMRPlugin = new webpack.HotModuleReplacementPlugin();
 
-exports.ServiceWorkerPlugin = new ServiceWorkerWebpackPlugin({
-  entry: path.join(__dirname, '..', 'src/assets/serviceworker.js'),
-  excludes: [
-    '**/.*',
-    '**/*.map'
+exports.ServiceWorkerPrecachePlugin = new ServiceWorkerPrecachePlugin({
+  cacheId: 'webstarter',
+  filename: 'sw.js',
+  maximumFileSizeToCacheInBytes: 4194304,
+  minify: isProd,
+  staticFileGlobs: [
+    '../src/assets/img/**.*',
+    '../src/assets/fonts/**.*',
+    '../src/assets/icons/**.*',
+    '../src/assets/styles.css',
   ],
+  stripPrefix: '../src/static/',
+  runtimeCaching: [{
+    handler: 'cacheFirst',
+    urlPattern: /[.]js$/,
+  }],
+  mergeStaticsConfig: true,
+  staticFileGlobsIgnorePatterns: [/\.map$/]
 });
+
 
 exports.WebpackPlugin = new HtmlWebpackPlugin({
   title: 'Web Starter',

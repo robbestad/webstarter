@@ -4,7 +4,6 @@ const webpack = require('webpack');
 const config = require('./webpack.config.base.js');
 const ExtractCSS = require('extract-text-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
-const glob = require('glob');
 
 // Merge with base configuration
 //-------------------------------

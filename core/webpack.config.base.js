@@ -8,7 +8,7 @@ const {
   WebpackPlugin,
   CopyPlugin,
   ExtractPlugin,
-  ServiceWorkerPlugin,
+  ServiceWorkerPrecachePlugin,
   BabelRule,
   CSSRule
 } = require(path.join(__dirname, 'webpack.plugins'));
@@ -27,7 +27,7 @@ module.exports = {
     WebpackPlugin,
     CopyPlugin,
     ExtractPlugin,
-    ServiceWorkerPlugin
+    ServiceWorkerPrecachePlugin
   ],
   module: {
     rules: [
