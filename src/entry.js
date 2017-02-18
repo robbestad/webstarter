@@ -21,9 +21,8 @@ function App({children}) {
 
 Inferno.render((
   <Router history={browserHistory}>
-    <Route component={App}>
-      <Route path="/sub" component={Sub}/>
-    </Route>
+    <Route component={App}/>
+    <Route path="/sub" component={Sub}/>
   </Router>
 ), document.getElementById('root'));
 
