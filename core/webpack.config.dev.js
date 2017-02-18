@@ -14,7 +14,7 @@ Object.assign(config, {
     './src/entry.js'
   ],
   output: {
-    filename: '[name].js',
+    filename: '[name]-[hash:8].js',
     path: path.join(__dirname, '..', 'build'),
     publicPath: '/',
     chunkFilename: '[name]-[chunkhash].js',

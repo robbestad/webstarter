@@ -25,7 +25,7 @@ exports.ServiceWorkerPrecachePlugin = new ServiceWorkerPrecachePlugin({
     urlPattern: /[.]js$/,
   }],
   mergeStaticsConfig: true,
-  staticFileGlobsIgnorePatterns: [/\.map$/]
+  staticFileGlobsIgnorePatterns: [/\.map$/, /^(?:\w+\/)*(\.\w+)/, /.DS_Store/]
 });
 
 
