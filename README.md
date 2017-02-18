@@ -19,7 +19,7 @@ A project that gets you started with the latest and greatest frontend tech.
     
 3. Start project with ```yarn dev``` (defaults to port 5001 and can be displayed on [localhost:5001](http://localhost:5001))
 
-4. Distribution build is generated with ```yarn start``` and defaults to port 1997. It will generate tiny, optimized vendor and app bundles and a minimized index.html.
+4. Distribution build is generated with ```yarn start``` and defaults to port 1998. It will generate tiny, optimized vendor and app bundles and a minimized index.html.
 
 ## Config
 
