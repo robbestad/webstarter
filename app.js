@@ -58,7 +58,7 @@ if (!isProd) {
     compress: false,
     watchOptions: {
       aggregateTimeout: 500,
-      poll: false
+      poll: 1000
     },
     stats: {
       colors: true,
