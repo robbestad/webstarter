@@ -9,6 +9,7 @@ require('colors');
 const Router = require('koa-router');
 const router = new Router();
 const convert = require('koa-convert');
+const staticCache = require('koa-static-cache');
 const bodyParser = require('koa-better-body');
 const compress = require('koa-compress');
 const catcher = require('./src/server/middleware/catcher');
@@ -17,7 +18,6 @@ const config = require('./src/config/index');
 router
   .get('*', async function (ctx) {
     if ('/' == ctx.path) await send(ctx, root + "index.html");
-    // if (ctx.path.startsWith("/assets")) await send(ctx, root + ctx.path);
     if (ctx.path.endsWith("/sub")) await send(ctx, root + "index.html");
     await send(ctx, root + ctx.path);
   });
@@ -26,6 +26,9 @@ const app = new koa()
   .use(favicon(path.join(__dirname, root, 'assets/icons/favicon.ico')))
   .use(router.routes())
   .use(router.allowedMethods())
+  .use(staticCache(path.join(__dirname, root, 'assets'), {
+    maxAge: 365 * 24 * 60 * 60
+  }))
   .use(convert(bodyParser({
     formLimit: '200kb',
     jsonLimit: '200kb',

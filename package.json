@@ -111,6 +111,7 @@
     "koa-favicon": "^2.0.0",
     "koa-router": "^7.1.0",
     "koa-send": "^3.3.0",
+    "koa-static-cache": "^3.2.0",
     "promise-polyfill": "^6.0.2",
     "rimraf": "^2.5.4",
     "serviceworker-webpack-plugin": "^0.2.0",
