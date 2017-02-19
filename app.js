@@ -26,9 +26,9 @@ const app = new koa()
   .use(favicon(path.join(__dirname, root, 'assets/icons/favicon.ico')))
   .use(router.routes())
   .use(router.allowedMethods())
-  .use(staticCache(path.join(__dirname, root, 'assets'), {
+  .use(convert(staticCache(path.join(__dirname, root, 'assets'), {
     maxAge: 365 * 24 * 60 * 60
-  }))
+  })))
   .use(convert(bodyParser({
     formLimit: '200kb',
     jsonLimit: '200kb',
