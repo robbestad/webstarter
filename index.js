@@ -9,7 +9,7 @@ require('./core/compile');
 
 // require('babel-register');
 // require('./src/server/server');
-const http = require('spdy');
+const http = require('http');
 const app = require('./app');
 
 http.createServer(app.callback()).listen(process.env.PORT || 1998);
