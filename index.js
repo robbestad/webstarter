@@ -8,17 +8,11 @@ require('./core/compile');
  */
 
 // require('babel-register');
-// require('./src/server/server');
-const https = require('spdy');
+// require('./src/server/syerver');
+const http = require('spdy');
 const app = require('./app');
 
-const options = {
-  spdy: {
-    protocols: ['h2'],
-    plain: false
-  }
-};
-https.createServer(options, app.callback()).listen(process.env.PORT || 1998);
+http.createServer(app.callback()).listen(process.env.PORT || 1998);
 
 //eslint-disable-next-line no-console
 console.log("Started webserver on http://localhost:" + (process.env.PORT || 1998));
