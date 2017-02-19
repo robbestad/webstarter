@@ -1,6 +1,6 @@
 {
   "name": "webstarter",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "A complete web starter project built on modern frontend tech",
   "license": "SEE LICENSE IN <LICENSE.md>",
   "main": "index.js",
