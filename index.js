@@ -2,7 +2,7 @@
  * Bootstrap core and webpack
  */
 require('./core/helpers/logger');
-require('./core/compile');
+// require('./core/compile');
 /**
  * Bootstrap our server
  */
