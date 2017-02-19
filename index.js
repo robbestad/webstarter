@@ -8,7 +8,7 @@ require('./core/compile');
  */
 
 // require('babel-register');
-// require('./src/server/syerver');
+// require('./src/server/server');
 const http = require('spdy');
 const app = require('./app');
 
