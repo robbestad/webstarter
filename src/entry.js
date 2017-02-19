@@ -10,13 +10,17 @@ if (module.hot) {
 }
 function App({children}) {
   return <div>
-    <h1>My app</h1>
+    <h1>My App</h1>
     <ul>
 
       <li><Link to="/sub">Go deep</Link></li>
     </ul>
     {children ? children : null}
   </div>
+}
+
+if (module.hot) {
+  module.hot.accept();
 }
 
 Inferno.render((
@@ -26,6 +30,3 @@ Inferno.render((
   </Router>
 ), document.getElementById('root'));
 
-if (module.hot) {
-  module.hot.accept();
-}
