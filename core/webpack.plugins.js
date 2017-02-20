@@ -7,6 +7,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const WebpackCleanupPlugin = require('webpack-cleanup-plugin');
 const OfflinePlugin = require('offline-plugin');
 const HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin');
+const HtmlWebpackExcludeAssetsPlugin = require('html-webpack-exclude-assets-plugin');
 const config = require(path.join(__dirname, '..', 'src', 'config', 'index'));
 
 exports.WebpackCleanupPlugin = new WebpackCleanupPlugin({
@@ -14,6 +15,7 @@ exports.WebpackCleanupPlugin = new WebpackCleanupPlugin({
 });
 
 exports.HtmlWebpackInlineSourcePlugin = new HtmlWebpackInlineSourcePlugin();
+exports.HtmlWebpackExcludeAssetsPlugin = new HtmlWebpackExcludeAssetsPlugin();
 
 exports.OfflinePlugin = new OfflinePlugin({
   caches: 'all',
@@ -31,6 +33,7 @@ exports.HtmlWebpackPlugin = new HtmlWebpackPlugin({
   cache: false,
   appMountId: 'root',
   inlineSource: '.(css)$',
+  excludeAssets: [/styles.css/],
   minify: {
     removeComments: isProd,
     collapseWhitespace: isProd,
@@ -131,15 +134,12 @@ exports.BabelRule = isProd ? {
 //   })
 // };
 
-exports.CSSRule = isProd ? {
-    test: /\.css$/,
+exports.CSSRule = {
+  test: /\.css$/,
+  use: ExtractTextPlugin.extract({
     use: 'css-loader?importLoaders=1!postcss-loader'
-  } : {
-    test: /\.css$/,
-    use: ExtractTextPlugin.extract({
-      use: 'css-loader?importLoaders=1!postcss-loader'
-    })
-  };
+  })
+};
 
 exports.HBSRule = {
   test: /\.hbs$/,
