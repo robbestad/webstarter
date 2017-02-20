@@ -32,11 +32,11 @@ exports.HtmlWebpackPlugin = new HtmlWebpackPlugin({
   inlineSource: '.(css)$',
   minify: {
     maxLineLength: 90,
-    removeComments: !isProd,
-    collapseWhitespace: !isProd,
-    conservativeCollapse: !isProd,
-    minifyJS: !isProd,
-    minifyCSS: !isProd
+    removeComments: isProd,
+    collapseWhitespace: isProd,
+    conservativeCollapse: isProd,
+    minifyJS: isProd,
+    minifyCSS: isProd
   }
 });
 
