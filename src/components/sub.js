@@ -9,9 +9,9 @@ export default class Sub extends Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick(e) {
+  handleClick() {
     if (this.allowClick) {
-      console.log('click', new Date());
+      console.log('click', new Date()); // eslint-disable-line no-console
     }
     this.allowClick = false;
     setTimeout(() => {
