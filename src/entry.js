@@ -10,24 +10,27 @@ if (module.hot) {
   require('inferno-devtools')
 }
 function App({children}) {
-  return <div>
-    <h1>My App</h1>
-    <ul>
-
-      <li><Link to="/sub">Go deep</Link></li>
-    </ul>
-    {children ? children : null}
+  return <div className="container">
+    <header>
+      <h1>My App</h1>
+    </header>
+    <div className="main">
+      <Link to="/sub">Go deep</Link>
+      {children ? children : null}
+      {new Array(5).fill("").map(()=>{return <div>test</div>})}
+    </div>
+    <div class="footer">
+      Footer Content
+    </div>
   </div>
 }
 
 if (module.hot) {
   module.hot.accept();
 }
-
 Inferno.render((
   <Router history={browserHistory}>
     <Route component={App}/>
     <Route path="/sub" component={Sub}/>
   </Router>
 ), document.getElementById('root'));
-

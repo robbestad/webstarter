@@ -127,13 +127,6 @@ exports.BabelRule = isProd ? {
     }
   };
 
-// exports.CSSRule = {
-//   test: /\.css$/,
-//   use: ExtractTextPlugin.extract({
-//     use: 'css-loader?importLoaders=1!postcss-loader'
-//   })
-// };
-
 exports.CSSRule = {
   test: /\.css$/,
   use: ExtractTextPlugin.extract({

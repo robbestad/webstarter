@@ -2,16 +2,58 @@
 @import "./typography.css";
 @import "./colors.css";
 
+* {
+    margin: 0;
+}
+
+html,
 body {
+    height: 100%;
+    margin: 0;
     background: var(--background-color);
     font-weight: var(--font-weight);
     line-height: var(--line-height);
     font-family: var(--font-text);
     color: var(--main-font-color);
 }
-a{
+
+a {
     color: var(--link-color);
-    }
-a:focus, a:hover{
+}
+
+a:focus, a:hover {
     color: var(--link-active-color);
+}
+
+.site {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.main,
+.footer {
+    color: white;
+    padding: 1em;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.main {
+    background: #333;
+    flex: 1;
+    padding: 10px;
+}
+
+.wrapper {
+    flex:1;
+}
+
+
+.footer {
+    background: #29abe2;
 }
