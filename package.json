@@ -17,6 +17,7 @@
     "predev": "npm run build:dev",
     "dev": "cross-env trash build && concurrently --kill-others \"npm run webpack-watch\" \"npm run webserver\"",
     "webserver": "cross-env NODE_ENV=development PORT=5001 node --harmony-async-await index.js",
+    "firstrun": "cross-env cp-file-cli src/config/index.js.example src/config/index.js",
     "start": "cross-env NODE_ENV=production node --harmony-async-await index",
     "preversion": "npm test",
     "postversion": "sh scripts/deploy.sh ",
@@ -36,9 +37,11 @@
   },
   "keywords": [
     "webstarter",
-    "inferno",
-    "koa",
-    "webpack"
+    "webpack2",
+    "pwa",
+    "koa2",
+    "offline",
+    "inferno"
   ],
   "author": "Sven Anders Robbestad <robbestad@gmail.com> (https://www.robbestad.com/)",
   "devDependencies": {
@@ -67,6 +70,7 @@
     "classnames": "^2.2.5",
     "concurrently": "^3.3.0",
     "copy-webpack-plugin": "^4.0.1",
+    "cp-file-cli": "^1.0.1",
     "cross-env": "^3.1.4",
     "cross-spawn": "^5.0.1",
     "css-loader": "^0.26.1",
@@ -77,6 +81,7 @@
     "fast-async": "^6.2.0",
     "file-loader": "^0.10.0",
     "gulp": "^3.9.1",
+    "handlebars": "^4.0.6",
     "handlebars-loader": "^1.4.0",
     "history": "^4.5.1",
     "html-minifier": "^3.3.3",
