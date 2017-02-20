@@ -56,6 +56,7 @@ config.plugins = [
       screw_ie8: true,
       conditionals: true,
       unused: true,
+      unsafe: true, // EXPERIMENTAL
       comparisons: true,
       sequences: true,
       dead_code: true,
