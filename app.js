@@ -19,9 +19,6 @@ router
   .get('*', async function (ctx) {
     if ('/' == ctx.path) await send(ctx, root + "index.html");
     if (ctx.path.endsWith("/sub")) await send(ctx, root + "index.html");
-    // if(ctx.path.endsWith(".js")){
-    //   ctx.contentType = "application/javascript";
-    // }
     await send(ctx, root + ctx.path);
   });
 
@@ -38,6 +35,9 @@ const app = new koa()
     bufferLimit: '4mb'
   })))
   .use(compress({
+    filter: (content_type) => {
+      return /text/i.test(content_type)
+    },
     threshold: 2048,
     flush: require('zlib').Z_SYNC_FLUSH
   }))
