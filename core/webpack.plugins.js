@@ -7,6 +7,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const WebpackCleanupPlugin = require('webpack-cleanup-plugin');
 const OfflinePlugin = require('offline-plugin');
 const HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin');
+const config = require(path.join(__dirname, '..', 'src', 'config', 'index'));
 
 exports.WebpackCleanupPlugin = new WebpackCleanupPlugin({
   exclude: ["assets/**/*"]
@@ -24,7 +25,7 @@ exports.OfflinePlugin = new OfflinePlugin({
 exports.HMRPlugin = new webpack.HotModuleReplacementPlugin();
 
 exports.HtmlWebpackPlugin = new HtmlWebpackPlugin({
-  title: 'Web Starter',
+  title: config.title,
   template: 'src/templates/default.hbs',
   inject: true,
   cache: false,
@@ -123,12 +124,22 @@ exports.BabelRule = isProd ? {
     }
   };
 
-exports.CSSRule = {
-  test: /\.css$/,
-  use: ExtractTextPlugin.extract({
+// exports.CSSRule = {
+//   test: /\.css$/,
+//   use: ExtractTextPlugin.extract({
+//     use: 'css-loader?importLoaders=1!postcss-loader'
+//   })
+// };
+
+exports.CSSRule = isProd ? {
+    test: /\.css$/,
     use: 'css-loader?importLoaders=1!postcss-loader'
-  })
-};
+  } : {
+    test: /\.css$/,
+    use: ExtractTextPlugin.extract({
+      use: 'css-loader?importLoaders=1!postcss-loader'
+    })
+  };
 
 exports.HBSRule = {
   test: /\.hbs$/,

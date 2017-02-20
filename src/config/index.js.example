@@ -1,10 +1,6 @@
 const path = require( 'path' )
 const config = {
-	cloudinary: {
-		cloud_name: 'sample',
-		api_key: '123123231231231',
-		api_secret: 'aacmkscmkcmccsacsmk'
-	},
+    title: 'Web starter',
 	http: {
 		port: 5001,
 		favicon: path.join( __dirname, 'assets/favicon.ico' ),
@@ -14,7 +10,7 @@ const config = {
 		}
 	},
 	server: {
-		SSR: true // Server side rendering
+		SSR: true
 	},
 	session: {
 		secret: 'SECRET',

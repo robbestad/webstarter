@@ -7,6 +7,7 @@ const {
   NamedModulesPlugin,
   HtmlWebpackPlugin,
   CopyPlugin,
+  ExtractPlugin,
   WebpackCleanupPlugin,
   OfflinePlugin,
   HtmlWebpackInlineSourcePlugin,
@@ -29,6 +30,7 @@ module.exports = {
     HtmlWebpackPlugin,
     HtmlWebpackInlineSourcePlugin,
     CopyPlugin,
+    ExtractPlugin,
     WebpackCleanupPlugin,
     OfflinePlugin
   ],
