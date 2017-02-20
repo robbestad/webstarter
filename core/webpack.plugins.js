@@ -5,12 +5,14 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const WebpackCleanupPlugin = require('webpack-cleanup-plugin');
-
 const OfflinePlugin = require('offline-plugin');
+const HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin');
 
 exports.WebpackCleanupPlugin = new WebpackCleanupPlugin({
   exclude: ["assets/**/*"]
 });
+
+exports.HtmlWebpackInlineSourcePlugin = new HtmlWebpackInlineSourcePlugin();
 
 exports.OfflinePlugin = new OfflinePlugin({
   caches: 'all',
@@ -21,12 +23,13 @@ exports.OfflinePlugin = new OfflinePlugin({
 
 exports.HMRPlugin = new webpack.HotModuleReplacementPlugin();
 
-exports.WebpackPlugin = new HtmlWebpackPlugin({
+exports.HtmlWebpackPlugin = new HtmlWebpackPlugin({
   title: 'Web Starter',
   template: 'src/templates/default.hbs',
   inject: true,
   cache: false,
   appMountId: 'root',
+  inlineSource: '.(css)$',
   minify: {
     maxLineLength: 90,
     removeComments: !isProd,

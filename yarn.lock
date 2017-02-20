@@ -2727,6 +2727,14 @@ html-webpack-inline-chunk-plugin@^1.0.0:
     lodash "^4.15.0"
     source-map-url "^0.4.0"
 
+html-webpack-inline-source-plugin@^0.0.6:
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/html-webpack-inline-source-plugin/-/html-webpack-inline-source-plugin-0.0.6.tgz#87f0447628c922518a7cff5b6016866ebc37d4bd"
+  dependencies:
+    escape-string-regexp "^1.0.5"
+    slash "^1.0.0"
+    source-map-url "^0.4.0"
+
 html-webpack-plugin@^2.28.0:
   version "2.28.0"
   resolved "https://registry.yarnpkg.com/html-webpack-plugin/-/html-webpack-plugin-2.28.0.tgz#2e7863b57e5fd48fe263303e2ffc934c3064d009"
