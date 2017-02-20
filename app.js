@@ -19,6 +19,9 @@ router
   .get('*', async function (ctx) {
     if ('/' == ctx.path) await send(ctx, root + "index.html");
     if (ctx.path.endsWith("/sub")) await send(ctx, root + "index.html");
+    // if(ctx.path.endsWith(".js")){
+    //   ctx.contentType = "application/javascript";
+    // }
     await send(ctx, root + ctx.path);
   });
 

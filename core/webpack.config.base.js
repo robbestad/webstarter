@@ -8,9 +8,11 @@ const {
   WebpackPlugin,
   CopyPlugin,
   ExtractPlugin,
-  ServiceWorkerPrecachePlugin,
+  WebpackCleanupPlugin,
+  OfflinePlugin,
   BabelRule,
-  CSSRule
+  CSSRule,
+  HBSRule
 } = require(path.join(__dirname, 'webpack.plugins'));
 
 module.exports = {
@@ -27,12 +29,14 @@ module.exports = {
     WebpackPlugin,
     CopyPlugin,
     ExtractPlugin,
-    ServiceWorkerPrecachePlugin
+    WebpackCleanupPlugin,
+    OfflinePlugin
   ],
   module: {
     rules: [
       BabelRule,
-      CSSRule
+      CSSRule,
+      HBSRule
     ]
   },
   resolve: {

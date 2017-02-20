@@ -4,46 +4,42 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const ServiceWorkerPrecachePlugin = require('sw-precache-webpack-plugin');
+const WebpackCleanupPlugin = require('webpack-cleanup-plugin');
+
+const OfflinePlugin = require('offline-plugin');
+
+exports.WebpackCleanupPlugin = new WebpackCleanupPlugin({
+  exclude: ["assets/**/*"]
+});
+
+exports.OfflinePlugin = new OfflinePlugin({
+  caches: 'all',
+  responseStrategy: 'network-first', // 'cache-first' | 'network-first'
+  updateStrategy: 'changed', // 'changed' | 'all',
+  excludes: ['**/.*', '**/*.map']
+});
 
 exports.HMRPlugin = new webpack.HotModuleReplacementPlugin();
 
-exports.ServiceWorkerPrecachePlugin = new ServiceWorkerPrecachePlugin({
-  cacheId: 'webstarter',
-  filename: 'sw.js',
-  maximumFileSizeToCacheInBytes: 4194304,
-  minify: isProd,
-  staticFileGlobs: [
-    '../src/assets/img/**.*',
-    '../src/assets/fonts/**.*',
-    '../src/assets/icons/**.*',
-    '../src/assets/styles.css',
-  ],
-  stripPrefix: '../src/static/',
-  runtimeCaching: [{
-    handler: 'cacheFirst',
-    urlPattern: /[.]js$/,
-  }],
-  mergeStaticsConfig: true,
-  staticFileGlobsIgnorePatterns: [/\.map$/, /^(?:\w+\/)*(\.\w+)/, /.DS_Store/]
-});
-
-
 exports.WebpackPlugin = new HtmlWebpackPlugin({
   title: 'Web Starter',
-  template: 'src/templates/default.ejs',
+  template: 'src/templates/default.hbs',
   inject: true,
+  cache: false,
   appMountId: 'root',
-  serviceWorker: 'src/assets/service.js',
   minify: {
-    removeComments: isProd,
-    collapseWhitespace: isProd,
+    maxLineLength: 90,
+    removeComments: !isProd,
+    collapseWhitespace: !isProd,
+    conservativeCollapse: !isProd,
+    minifyJS: !isProd,
+    minifyCSS: !isProd
   }
 });
 
 exports.CopyPlugin = new CopyWebpackPlugin([
     {from: 'src/assets', to: './assets'}],
-  {ignore: ['**/*.css', '*service.js']},
+  {ignore: ['**/*.css', '*.js']},
   {copyUnmodified: isProd}
 );
 
@@ -130,4 +126,9 @@ exports.CSSRule = {
   use: ExtractTextPlugin.extract({
     use: 'css-loader?importLoaders=1!postcss-loader'
   })
+};
+
+exports.HBSRule = {
+  test: /\.hbs$/,
+  use: 'handlebars-loader'
 };

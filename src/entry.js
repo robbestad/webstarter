@@ -4,6 +4,7 @@ import {Router, Route, Link} from 'inferno-router';
 import {createBrowserHistory} from 'history';
 const browserHistory = createBrowserHistory();
 import './assets/style/entry.css';
+require('offline-plugin/runtime').install();
 
 if (module.hot) {
   require('inferno-devtools')

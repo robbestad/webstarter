@@ -48,22 +48,25 @@ logger('server:webpack')('Environment: Production');
 
 // Save files to disk
 //-------------------------------
-config.plugins.push(
+config.plugins = [
   new webpack.optimize.OccurrenceOrderPlugin(),
   new webpack.optimize.UglifyJsPlugin({
-    compressor: {
+    compress: {
+      warnings: false,
       screw_ie8: true,
-      warnings: false
+      conditionals: true,
+      unused: true,
+      comparisons: true,
+      sequences: true,
+      dead_code: true,
+      evaluate: true,
+      if_return: true,
+      join_vars: true,
     },
     output: {
-      comments: false
+      comments: false,
     }
-  })
-);
-
-// Set some environment variables
-//-------------------------------
-config.plugins.push(
+  }),
   new ExtractCSS({filename: '[name]-[contenthash:8].css', allChunks: true}),
   new webpack.DefinePlugin({
     'process.env.DEV': false,
@@ -73,7 +76,7 @@ config.plugins.push(
   new ManifestPlugin({
     fileName: 'build-manifest.json'
   })
-);
+].concat(config.plugins);
 
 // Sanity checks
 //-------------------------------
