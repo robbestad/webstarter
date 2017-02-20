@@ -31,7 +31,6 @@ exports.HtmlWebpackPlugin = new HtmlWebpackPlugin({
   appMountId: 'root',
   inlineSource: '.(css)$',
   minify: {
-    maxLineLength: 90,
     removeComments: isProd,
     collapseWhitespace: isProd,
     conservativeCollapse: isProd,
