@@ -4,7 +4,7 @@
 @import "./typography.css";
 
 .grid {
-    max-width: 100%;
+    /*max-width: 100%;*/
     overflow: visible;
     background: var(--background-color);
     border-top: 0px solid var(--dark);
