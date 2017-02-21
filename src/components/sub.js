@@ -21,9 +21,9 @@ export default class Sub extends Component {
 
   render() {
     return t('div', null,
-      t('h2', null, 'My Sub Page'),
-      t('div', null, 'Everything is A-OK!'),
-      t('input', {type: 'button', onClick: this.handleClick, value: 'Click me'}),
+      t('h2', null, 'Here I am :)'),
+      t('div', null, 'And everything is A-OK!'),
+      // t('input', {type: 'button', onClick: this.handleClick, value: 'Click me'}),
       t('div', null, t(Link, {to: '/'}, 'Close me!')
       ));
   }
