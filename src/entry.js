@@ -56,7 +56,7 @@ function App({children}) {
       </div>
       <div className="col-6">
         <div className="content">
-          
+
         </div>
       </div>
     </div>
@@ -68,7 +68,8 @@ if (module.hot) {
 }
 Inferno.render((
   <Router history={browserHistory}>
-    <Route component={App}/>
-    <Route path="/sub" component={Sub}/>
+    <Route component={App}>
+      <Route path="/sub" component={Sub}/>
+    </Route>
   </Router>
 ), document.getElementById('root'));
