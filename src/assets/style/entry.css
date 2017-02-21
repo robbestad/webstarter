@@ -40,9 +40,11 @@ a, a:focus, a:hover {
 }
 
 .footer {
-    color: var(--font-light);
-    background: var(--dark);
+    color: var(--dark);
+    background: var(--background-color);
     text-align: center;
+    border: 1px solid var(--dark);
+    border-bottom: none;
 }
 
 .border-left {

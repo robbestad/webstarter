@@ -8,6 +8,11 @@ A project that gets you started with the latest and greatest frontend tech.
 * Inferno
 * Config vetted for Mac / Windows / Linux
 
+## DEMO
+
+[Open demo](https://webstarter.robbestad.no)
+
+
 ## Getting started
 
 1. Clone project with ```git clone https://github.com/svenanders/webstarter.git```

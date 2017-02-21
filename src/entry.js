@@ -20,17 +20,17 @@ function App({children}) {
       </div>
       <div className="col-3 border-left border-bottom">
         <div className="content">
-          <div className="font-semi-bold font-size-l italic">{config.title}</div>
+          <div className="font-semi-bold font-size-l italic">Menypunkt 1</div>
         </div>
       </div>
       <div className="col-3 border-left border-bottom">
         <div className="content ">
-          <div className="font-semi-bold font-size-l italic">{config.title}</div>
+          <div className="font-semi-bold font-size-l italic">Menypunkt 2</div>
         </div>
       </div>
       <div className="col-2 border-left border-bottom border-right">
         <div className="content ">
-          <div className="font-semi-bold font-size-l italic">4</div>
+          <div className="font-semi-bold font-size-l italic">HELP?</div>
         </div>
       </div>
 
@@ -38,17 +38,13 @@ function App({children}) {
     <div className="row">
       <div className="col-3">
         <div className="content font-style-regular italic">
-          {new Array(53).fill("").map(() => {
+          {new Array(10).fill("").map(() => {
             return <span>test. </span>
           })}
         </div>
       </div>
       <div className="col-9">
         <div className="content">
-          {new Array(53).fill("").map(() => {
-            return <span>test. </span>
-          })}
-
         </div>
       </div>
     </div>
@@ -66,9 +62,6 @@ function App({children}) {
     <div className="row">
       <div className="col-6">
         <div className="content">
-          {new Array(553).fill("").map(() => {
-            return <span>test. </span>
-          })}
 
         </div>
       </div>
@@ -78,33 +71,6 @@ function App({children}) {
     </div>
   </div>
 }
-/*
-
-
- return <div className="container">
- <header>
- <div className="">
- <div className="font-semi-bold font-size-xxl italic">{config.title}</div>
- </div>
- <div className="">
- <a className="font-style-extra-light font-size-l italic">ABOUT</a>
- </div>
- <div className="">
- <a className="">MENU</a>
- </div>
- </header>
- <div className="main">
- <Link to="/sub">Go deep</Link>
- {children ? children : null}
- {new Array(5).fill("").map(() => {
- return <div>test</div>
- })}
- </div>
- <div className="footer">
- Footer Content
- </div>
- </div>
- */
 
 if (module.hot) {
   module.hot.accept();
