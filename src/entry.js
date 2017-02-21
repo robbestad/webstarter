@@ -6,7 +6,6 @@ const browserHistory = createBrowserHistory();
 import './assets/style/entry.css';
 require('offline-plugin/runtime').install();
 import config from './config';
-import minirouter from './router';
 
 if (module.hot) {
   require('inferno-devtools')

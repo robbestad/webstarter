@@ -9,9 +9,7 @@
     --font-extrabold-family: monospace;
     --font-extrabold-weight: 700;
     --font-extrabold-style: normal;
-
 }
-
 
 .font-style-extra-bold {
     font-weight: var(--font-extrabold-weight);
