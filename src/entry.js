@@ -36,19 +36,6 @@ function App({children}) {
 
     </div>
     <div className="row">
-      <div className="col-3">
-        <div className="content font-style-regular italic">
-          {new Array(10).fill("").map(() => {
-            return <span>test. </span>
-          })}
-        </div>
-      </div>
-      <div className="col-9">
-        <div className="content">
-        </div>
-      </div>
-    </div>
-    <div className="row">
       <div className="col-4">
         <div className="content">
           <Link to="/sub">Go deep</Link>
@@ -56,7 +43,9 @@ function App({children}) {
         </div>
       </div>
       <div className="col-8">
-        <div className="content"></div>
+        <div className="content">
+          {children ? children : null}
+        </div>
       </div>
     </div>
     <div className="row">
@@ -66,7 +55,9 @@ function App({children}) {
         </div>
       </div>
       <div className="col-6">
-        <div className="content"></div>
+        <div className="content">
+          
+        </div>
       </div>
     </div>
   </div>
