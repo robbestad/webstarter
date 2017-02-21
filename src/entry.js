@@ -6,6 +6,7 @@ const browserHistory = createBrowserHistory();
 import './assets/style/entry.css';
 require('offline-plugin/runtime').install();
 import config from './config';
+import minirouter from './router';
 
 if (module.hot) {
   require('inferno-devtools')
@@ -15,22 +16,30 @@ function App({children}) {
     <div className="row">
       <div className="col-4 border-left border-bottom">
         <div className="content">
-          <div className="font-semi-bold font-size-xxl">{config.title}</div>
+          <div className="font-semi-bold font-size-xxl">
+            <div className="inner-first">{config.title}</div>
+          </div>
         </div>
       </div>
       <div className="col-3 border-left border-bottom">
         <div className="content">
-          <div className="font-semi-bold font-size-l italic">Menypunkt 1</div>
+          <div className="font-semi-bold font-size-l italic">
+            <div className="inner">Menypunkt 1</div>
+          </div>
         </div>
       </div>
       <div className="col-3 border-left border-bottom">
         <div className="content ">
-          <div className="font-semi-bold font-size-l italic">Menypunkt 2</div>
+          <div className="font-semi-bold font-size-l italic">
+            <div className="inner">Menypunkt 2</div>
+          </div>
         </div>
       </div>
       <div className="col-2 border-left border-bottom border-right">
         <div className="content ">
-          <div className="font-semi-bold font-size-l italic">HELP?</div>
+          <div className="font-semi-bold font-size-l italic">
+            <div className="inner">HELP?!</div>
+          </div>
         </div>
       </div>
 
@@ -38,7 +47,9 @@ function App({children}) {
     <div className="row">
       <div className="col-4 border-left border-bottom ">
         <div className="content">
-          <Link to="/sub">Hello my child</Link>
+          <div className="inner-left">
+            <Link to="/sub">Hello my child</Link>
+          </div>
 
         </div>
       </div>
@@ -61,6 +72,7 @@ function App({children}) {
 if (module.hot) {
   module.hot.accept();
 }
+
 Inferno.render((
   <Router history={browserHistory}>
     <Route component={App}>
