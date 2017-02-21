@@ -1,59 +1,80 @@
 /* Shared */
-@import "./typography.css";
+@import "./grid.css";
 @import "./colors.css";
+@import "./typography.css";
 
-* {
-    margin: 0;
+.grid {
+    /*max-width: 100%;*/
 }
+
 
 html,
 body {
-    height: 100%;
-    margin: 0;
     background: var(--background-color);
-    font-weight: var(--font-weight);
-    line-height: var(--line-height);
-    font-family: var(--font-text);
     color: var(--main-font-color);
 }
+
+html {
+    height: 100%;
+}
+body {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.wrapper {
+    flex: 1;
+}
+.footer {
+    width: 100%;
+    padding: 10px;
+    margin: 0 auto;
+    max-width: 960px;
+    overflow: hidden;
+}
+
+
+
 
 a {
     color: var(--link-color);
 }
 
 a:focus, a:hover {
-    color: var(--link-active-color);
+    color: var(--link-color);
 }
-
-.site {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-.main,
-.footer {
-    color: white;
-    padding: 1em;
-}
-
-.container {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-.main {
-    background: #333;
-    flex: 1;
-    padding: 10px;
-}
-
-.wrapper {
-    flex:1;
-}
-
 
 .footer {
-    background: #29abe2;
+    color: var(--font-light);
+    background: var(--dark);
+    text-align: center;
 }
+.border-left{
+    border-left: 1px solid black;
+}
+.border-bottom{
+    border-bottom: 1px solid black;
+}
+.border-right{
+    border-right: 1px solid black;
+}
+
+
+
+/*header div {*/
+/*padding: 20px;*/
+/*!*border-right: 1px solid var(--dark);*!*/
+/*width: 240px;*/
+/*height: 100%;*/
+/*float: left;*/
+/*}*/
+
+/*header div.menu {*/
+/*height: 100%;*/
+/*width: 95px;*/
+/*}*/
+
+/*header div a.menu-link {*/
+/*color: var(--dark);*/
+/*padding-left: 10px;*/
+/*}*/

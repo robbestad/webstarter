@@ -1,6 +1,83 @@
 /* shared/typography.css */
 :root {
-    --font-text: "FF DIN", sans-serif;
+    --font-text: "jaf-facitweb", sans-serif;
     --font-weight: 300;
     --line-height: 1.5;
+
+    --font-extra-light-family: "jaf-facitweb";
+    --font-extra-light-weight: 200;
+    --font-extra-light-style: normal;
+    --font-extra-light-italic-style: italic;
+
+    --font-light-family: "jaf-facitweb";
+    --font-light-weight: 300;
+    --font-light-style: normal;
+
+    --font-regular-family: "jaf-facitweb";
+    --font-regular-weight: 400;
+    --font-regular-style: normal;
+    --font-regular-italic-style: italic;
+
+    --font-semibold-family: "jaf-facitweb";
+    --font-semibold-weight: 600;
+    --font-semibold-style: normal;
+    --font-semibold-italic-style: italic;
+
+    --font-extrabold-family: "jaf-facitweb";
+    --font-extrabold-weight: 800;
+    --font-extrabold-style: normal;
+
+}
+
+.font-style-extra-bold {
+    font-weight: var(--font-extrabold-weight);
+    font-family: var(--font-extrabold-family);
+    font-style: var(--font-extrabold-style);
+}
+
+.font-style-semi-bold {
+    font-weight: var(--font-semibold-weight);
+    font-family: var(--font-semibold-family);
+    font-style: var(--font-semibold-style);
+}
+
+.font-style-light {
+    font-weight: var(--font-light-weight);
+    font-family: var(--font-light-family);
+    font-style: var(--font-light-style);
+}
+
+.font-style-extra-light {
+    font-weight: var(--font-light-weight);
+    font-family: var(--font-light-family);
+    font-style: var(--font-light-style);
+}
+
+.italic {
+    font-style: italic;
+}
+
+.font-size-small {
+    font-size: 14px;
+}
+
+.font-size-l {
+    font-size: 22px;
+}
+
+.font-size-xl {
+    font-size: 28px;
+}
+
+.font-size-xxl {
+    font-size: 36px;
+}
+
+html,
+body {
+    line-height: var(--line-height);
+    font-weight: var(--font-weight);
+    font-family: var(--font-text);
+    color: var(--main-font-color);
+    font-size: 18px;
 }

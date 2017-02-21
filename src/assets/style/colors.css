@@ -1,7 +1,10 @@
 /* shared/typography.css */
 :root {
-    --background-color: #ecf0f1;
-    --main-font-color: #e74c3c;
-    --link-color: #c0392b;
-    --link-active-color: #f39c12;
+    --background-color-dark: #34495e;
+    --menu-link-color: #f1c40f;
+    --dark: #010101;
+    --font-light: #fefefe;
+    --background-color: #ffffff;
+    --main-font-color: #E6575A;
+    --link-color: #E6575A;
 }
