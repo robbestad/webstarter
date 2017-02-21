@@ -38,7 +38,7 @@ function App({children}) {
     <div className="row">
       <div className="col-4">
         <div className="content">
-          <Link to="/sub">Go deep</Link>
+          <Link to="/sub">Hello my child</Link>
 
         </div>
       </div>
