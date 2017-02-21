@@ -7,24 +7,26 @@
     /*max-width: 100%;*/
 }
 
-
 html,
 body {
     background: var(--background-color);
-    color: var(--main-font-color);
+    color: var(--font-color-main);
 }
 
 html {
     height: 100%;
 }
+
 body {
     min-height: 100%;
     display: flex;
     flex-direction: column;
 }
+
 .wrapper {
     flex: 1;
 }
+
 .footer {
     width: 100%;
     padding: 10px;
@@ -33,15 +35,8 @@ body {
     overflow: hidden;
 }
 
-
-
-
-a {
-    color: var(--link-color);
-}
-
-a:focus, a:hover {
-    color: var(--link-color);
+a, a:focus, a:hover {
+    color: var(--font-color-main);
 }
 
 .footer {
@@ -49,32 +44,16 @@ a:focus, a:hover {
     background: var(--dark);
     text-align: center;
 }
-.border-left{
+
+.border-left {
     border-left: 1px solid black;
 }
-.border-bottom{
+
+.border-bottom {
     border-bottom: 1px solid black;
 }
-.border-right{
+
+.border-right {
     border-right: 1px solid black;
 }
 
-
-
-/*header div {*/
-/*padding: 20px;*/
-/*!*border-right: 1px solid var(--dark);*!*/
-/*width: 240px;*/
-/*height: 100%;*/
-/*float: left;*/
-/*}*/
-
-/*header div.menu {*/
-/*height: 100%;*/
-/*width: 95px;*/
-/*}*/
-
-/*header div a.menu-link {*/
-/*color: var(--dark);*/
-/*padding-left: 10px;*/
-/*}*/

@@ -5,6 +5,6 @@
     --dark: #010101;
     --font-light: #fefefe;
     --background-color: #ffffff;
-    --main-font-color: #E6575A;
-    --link-color: #E6575A;
+    --font-color-alternate: #E6575A;
+    --font-color-main: #34495e;
 }
