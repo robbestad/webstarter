@@ -2,22 +2,16 @@
 :root {
     --line-height: 1.5;
 
-    --font-regular-family: "Space Mono", monospace;
+    --font-regular-family: monospace;
     --font-regular-weight: 400;
     --font-regular-style: normal;
 
-    --font-extrabold-family: "Space Mono", monospace;
+    --font-extrabold-family: monospace;
     --font-extrabold-weight: 700;
     --font-extrabold-style: normal;
 
 }
 
-/*@font-face {*/
-    /*font-family: 'Space Mono';*/
-    /*src: url('../fonts/SpaceMono-Bold.woff2') format('woff2'),*/
-    /*url('../fonts/SpaceMono-BoldItalic.woff2') format('woff2'),*/
-    /*url('../fonts/SpaceMono-Regular.woff2') format('woff2');*/
-/*}*/
 
 .font-style-extra-bold {
     font-weight: var(--font-extrabold-weight);
