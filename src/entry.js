@@ -36,27 +36,22 @@ function App({children}) {
 
     </div>
     <div className="row">
-      <div className="col-4">
+      <div className="col-4 border-left border-bottom ">
         <div className="content">
           <Link to="/sub">Hello my child</Link>
 
         </div>
       </div>
-      <div className="col-8">
+      <div className="col-8 border-left border-bottom border-right">
         <div className="content">
           {children ? children : null}
         </div>
       </div>
     </div>
     <div className="row">
-      <div className="col-6">
+      <div className="col-12 border-left border-bottom border-right">
         <div className="content">
-
-        </div>
-      </div>
-      <div className="col-6">
-        <div className="content">
-
+          I got the entire row to myself
         </div>
       </div>
     </div>
