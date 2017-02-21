@@ -8,6 +8,10 @@ A project that gets you started with the latest and greatest frontend tech.
 * Inferno
 * Config vetted for Mac / Windows / Linux
 
+*Built with performance in mind*
+
+![(100/100 PWA](promo/lighthouse.png)
+
 ## DEMO
 
 [Open demo](https://webstarter.robbestad.no)
