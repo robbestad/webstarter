@@ -12,12 +12,12 @@
 
 }
 
-@font-face {
-    font-family: 'Space Mono';
-    src: url('../fonts/SpaceMono-Bold.woff2') format('woff2'),
-    url('../fonts/SpaceMono-BoldItalic.woff2') format('woff2'),
-    url('../fonts/SpaceMono-Regular.woff2') format('woff2');
-}
+/*@font-face {*/
+    /*font-family: 'Space Mono';*/
+    /*src: url('../fonts/SpaceMono-Bold.woff2') format('woff2'),*/
+    /*url('../fonts/SpaceMono-BoldItalic.woff2') format('woff2'),*/
+    /*url('../fonts/SpaceMono-Regular.woff2') format('woff2');*/
+/*}*/
 
 .font-style-extra-bold {
     font-weight: var(--font-extrabold-weight);
