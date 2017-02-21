@@ -15,7 +15,7 @@ function App({children}) {
     <div className="row">
       <div className="col-4 border-left border-bottom">
         <div className="content">
-          <div className="font-semi-bold font-size-xxl italic">{config.title}</div>
+          <div className="font-semi-bold font-size-xxl">{config.title}</div>
         </div>
       </div>
       <div className="col-3 border-left border-bottom">
@@ -37,7 +37,7 @@ function App({children}) {
     </div>
     <div className="row">
       <div className="col-3">
-        <div className="content">
+        <div className="content font-style-regular italic">
           {new Array(53).fill("").map(() => {
             return <span>test. </span>
           })}

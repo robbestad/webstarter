@@ -13,6 +13,7 @@ const {
   HtmlWebpackInlineSourcePlugin,
   BabelRule,
   CSSRule,
+  URLRule,
   HBSRule
 } = require(path.join(__dirname, 'webpack.plugins'));
 
@@ -38,6 +39,7 @@ module.exports = {
     rules: [
       BabelRule,
       CSSRule,
+      URLRule,
       HBSRule
     ]
   },

@@ -1,32 +1,22 @@
 /* shared/typography.css */
 :root {
-    --font-text: "jaf-facitweb", sans-serif;
-    --font-weight: 300;
     --line-height: 1.5;
 
-    --font-extra-light-family: "jaf-facitweb";
-    --font-extra-light-weight: 200;
-    --font-extra-light-style: normal;
-    --font-extra-light-italic-style: italic;
-
-    --font-light-family: "jaf-facitweb";
-    --font-light-weight: 300;
-    --font-light-style: normal;
-
-    --font-regular-family: "jaf-facitweb";
+    --font-regular-family: "Space Mono", monospace;
     --font-regular-weight: 400;
     --font-regular-style: normal;
-    --font-regular-italic-style: italic;
 
-    --font-semibold-family: "jaf-facitweb";
-    --font-semibold-weight: 600;
-    --font-semibold-style: normal;
-    --font-semibold-italic-style: italic;
-
-    --font-extrabold-family: "jaf-facitweb";
-    --font-extrabold-weight: 800;
+    --font-extrabold-family: "Space Mono", monospace;
+    --font-extrabold-weight: 700;
     --font-extrabold-style: normal;
 
+}
+
+@font-face {
+    font-family: 'Space Mono';
+    src: url('../fonts/SpaceMono-Bold.woff2') format('woff2'),
+    url('../fonts/SpaceMono-BoldItalic.woff2') format('woff2'),
+    url('../fonts/SpaceMono-Regular.woff2') format('woff2');
 }
 
 .font-style-extra-bold {
@@ -35,22 +25,10 @@
     font-style: var(--font-extrabold-style);
 }
 
-.font-style-semi-bold {
-    font-weight: var(--font-semibold-weight);
-    font-family: var(--font-semibold-family);
-    font-style: var(--font-semibold-style);
-}
-
-.font-style-light {
-    font-weight: var(--font-light-weight);
-    font-family: var(--font-light-family);
-    font-style: var(--font-light-style);
-}
-
-.font-style-extra-light {
-    font-weight: var(--font-light-weight);
-    font-family: var(--font-light-family);
-    font-style: var(--font-light-style);
+.font-style-regular {
+    font-weight: var(--font-regular-weight);
+    font-family: var(--font-regular-family);
+    font-style: var(--font-regular-style);
 }
 
 .italic {
@@ -76,8 +54,8 @@
 html,
 body {
     line-height: var(--line-height);
-    font-weight: var(--font-weight);
-    font-family: var(--font-text);
-    color: var(--main-font-color);
-    font-size: 18px;
+    font-weight: var(--font-regular-weight);
+    font-family: var(--font-regular-family);
+    color: var(--dark);
+    font-size: 16px;
 }
