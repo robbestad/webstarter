@@ -4,7 +4,7 @@ import config from '../../config/index';
 import {Link} from 'inferno-router';
 import { connect } from 'inferno-mobx'
 
-@connect(['counter'])
+// @connect(['counter'])
 export default class Layout extends Component {
   render({children}) {
     return <div className="grid">

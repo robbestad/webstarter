@@ -4,9 +4,9 @@ export default function ({common}) {
 
   // Update document title whenever it changes
   autorun(() => {
-    // if (common.title) {
+    if (common.title) {
     //   debugger;
-    //   document.title = common.title
-    // }
+      document.title = common.title
+    }
   })
 }

@@ -1,4 +1,4 @@
-const {extendObservable} = require('mobx');
+const {extendObservable, observable} = require('mobx');
 
 /**
  * @class Common
@@ -18,3 +18,4 @@ module.exports = class Common {
     this.title = newTitle
   }
 };
+

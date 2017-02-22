@@ -2,6 +2,8 @@ import Inferno from 'inferno';
 import {Router, match} from 'inferno-router';
 import {createBrowserHistory} from 'history';
 import './assets/style/entry.css';
+import { Provider } from 'inferno-mobx'
+
 require('offline-plugin/runtime').install();
 const onEnter = require('./components/helpers/onEnter');
 import autorun from './autorun'
@@ -26,8 +28,9 @@ if (module.hot) {
   module.hot.accept();
 }
 
-Inferno.render(<App stores={stores}>
-  <Router history={window.browserHistory}>
-    {routing}
-  </Router>
-</App>, container);
+Inferno.render(<Provider {...stores} >
+    <Router history={window.browserHistory}>
+      {routing}
+    </Router>
+  </Provider>
+  , container);

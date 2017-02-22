@@ -3,7 +3,7 @@ import {Link} from 'inferno-router';
 import Component from 'inferno-component';
 import { connect } from 'inferno-mobx'
 
-@connect(['counter'])
+// @connect(['counter'])
 export default class Sub extends Component {
   constructor(props) {
     super(props);

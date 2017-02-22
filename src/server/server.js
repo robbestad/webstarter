@@ -12,16 +12,21 @@ const convert = require('koa-convert');
 const staticCache = require('koa-static-cache');
 const bodyParser = require('koa-better-body');
 const compress = require('koa-compress');
-const catcher = require('./src/server/middleware/catcher');
-const context = require('./src/server/middleware/context');
-const config = require('./src/config/index');
+const catcher = require('./middleware/catcher');
+const config = require('../config/index');
+const render = require('./middleware/render');
+const context = require('./middleware/context');
+import logger from 'debug';
+import mount from 'koa-mount';
+import serve from 'koa-static'
 
 router
   .get('*', async function (ctx) {
     if ('/' == ctx.path) await send(ctx, root + "index.html");
-    if (ctx.path.endsWith("/sub")) await send(ctx, root + "index.html");
+    if (ctx.path.endsWith("/page/about")) await send(ctx, root + "index.html");
     await send(ctx, root + ctx.path);
   });
+
 
 const app = new koa()
   .use(favicon(path.join(__dirname, root, 'assets/icons/favicon.ico')))
@@ -35,13 +40,6 @@ const app = new koa()
     jsonLimit: '200kb',
     bufferLimit: '4mb'
   })))
-  .use(compress({
-    filter: function (content_type) {
-      return /text/i.test(content_type)
-    },
-    threshold: 2048,
-    flush: require('zlib').Z_SYNC_FLUSH
-  }))
   .use(catcher)
   .use(context);
 
@@ -50,7 +48,7 @@ if (!isProd) {
 // Run DEV server for hot-reloading
   const WebpackDevServer = require('webpack-dev-server');
   const webpack = require('webpack');
-  const config = require('./core/webpack.config.dev.js');
+  const config = require('../../core/webpack.config.dev.js');
   const logger = require('debug');
 //---------------------------------
   const compiler = webpack(config);
@@ -82,6 +80,32 @@ if (!isProd) {
     if (err) return logger('webpack:error', err);
 
     logger('webpack:compiler')('Running on port ' + port)
+  });
+
+
+}
+
+if (isProd) {
+  app
+    .use(favicon(config.http.favicon))
+    .use(compress({
+      filter: (content_type) => {
+        return /text/i.test(content_type)
+      },
+      threshold: 2048,
+      flush: require('zlib').Z_SYNC_FLUSH
+    }));
+
+  // Serve static files
+  Object.keys(config.http.static).forEach(staticURL => {
+    logger('app:static')(staticURL);
+    app.use(convert(mount(staticURL, convert(serve(config.http.static[staticURL])))))
+  });
+
+  app.use(render);
+
+  app.listen(config.http.port, function () {
+    logger('app:start')('Listening on port ' + config.http.port)
   });
 
 
