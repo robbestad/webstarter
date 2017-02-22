@@ -35,6 +35,7 @@ export default class Counter {
     db.on((data) => {
       sum = ~~data.hits;
       this.setCount(sum + 1);
+      console.log(data);
     });
     gun.get('webstarter/hits').put({hits: sum + 1});
 
