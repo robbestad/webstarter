@@ -4,7 +4,8 @@ import config from '../../config/index';
 import {Link} from 'inferno-router';
 
 export default class Layout extends Component {
-  render({ children }) {
+  render({ stores, children, hostname  }) {
+    debugger;
     return <div className="grid">
       <div className="row">
         <div className="col-4 border-left border-bottom">
@@ -17,21 +18,21 @@ export default class Layout extends Component {
         <div className="col-3 border-left border-bottom">
           <div className="content">
             <div className="font-semi-bold font-size-l italic">
-              <div className="inner">Menypunkt 1</div>
+              <div className="inner"> 1</div>
             </div>
           </div>
         </div>
         <div className="col-3 border-left border-bottom">
           <div className="content ">
             <div className="font-semi-bold font-size-l italic">
-              <div className="inner">Menypunkt 2</div>
+              <div className="inner">2</div>
             </div>
           </div>
         </div>
         <div className="col-2 border-left border-bottom border-right">
           <div className="content ">
             <div className="font-semi-bold font-size-l italic">
-              <div className="inner">counter</div>
+              <div className="inner"></div>
             </div>
           </div>
         </div>

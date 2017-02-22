@@ -1,7 +1,9 @@
 const t = require('inferno-create-element');
 import {Link} from 'inferno-router';
 import Component from 'inferno-component';
+import { connect } from 'inferno-mobx'
 
+@connect(['counter'])
 export default class Sub extends Component {
   constructor(props) {
     super(props);
@@ -23,6 +25,7 @@ export default class Sub extends Component {
     return t('div', null,
       t('h2', null, 'Here I am :)'),
       t('div', null, 'And everything is A-OK!'),
+      // t('div', null, counter),
       // t('input', {type: 'button', onClick: this.handleClick, value: 'Click me'}),
       t('div', null, t(Link, {to: '/'}, 'Close me!')
       ));
