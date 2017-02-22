@@ -99,11 +99,18 @@ exports.BabelRule = isProd ? {
       presets: [],
       plugins: [
         "add-module-exports",
-        "transform-es2015-modules-commonjs",
-        "transform-es2015-destructuring",
-        "transform-object-rest-spread",
         "transform-decorators-legacy",
         "transform-class-properties",
+        "transform-object-rest-spread",
+        "transform-es2015-arrow-functions",
+        "transform-es2015-block-scoped-functions",
+        "transform-es2015-block-scoping",
+        "transform-es2015-destructuring",
+        "transform-es2015-classes",
+        "transform-es2015-computed-properties",
+        "transform-es2015-literals",
+        "transform-es2015-modules-commonjs",
+        "transform-es2015-parameters",
         "inferno",
         ["fast-async"]
       ]
@@ -116,11 +123,18 @@ exports.BabelRule = isProd ? {
       presets: [],
       plugins: [
         "add-module-exports",
-        "transform-es2015-modules-commonjs",
-        "transform-es2015-destructuring",
-        "transform-object-rest-spread",
         "transform-decorators-legacy",
         "transform-class-properties",
+        "transform-object-rest-spread",
+        "transform-es2015-arrow-functions",
+        "transform-es2015-block-scoped-functions",
+        "transform-es2015-block-scoping",
+        "transform-es2015-destructuring",
+        "transform-es2015-classes",
+        "transform-es2015-computed-properties",
+        "transform-es2015-literals",
+        "transform-es2015-modules-commonjs",
+        "transform-es2015-parameters",
         "inferno",
         ["fast-async"]
       ]

@@ -19,6 +19,7 @@
   "rules": {
     "comma-dangle": "off",
     "inferno/prop-types": "off",
+    "inferno/display-name": "off",
     "no-undef": "off"
   }
 }

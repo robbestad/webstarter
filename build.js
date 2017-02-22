@@ -1,5 +1,5 @@
 /**
  * Bootstrap core and webpack
  */
-require('./core/helpers/logger');
+require('./src/components/helpers/logger');
 require('./core/compile');
