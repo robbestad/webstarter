@@ -62,15 +62,18 @@ export default class Counter {
 
     this.request = request;
     extendObservable(this, {
-      hits: ''
+      hits: sum
     }, state)
   }
 
   getCount() {
+    console.log('calling getCount');
+    console.log(this.hits);
     return this.hits;
   }
 
   setCount(count) {
+    console.log('calling setcount');
     this.hits = count;
   }
 };
