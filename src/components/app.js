@@ -12,7 +12,7 @@ export default class App extends Component {
       return <div/>
     }
     return <div>
-      <Provider {...stores}>
+      <Provider counter={stores.counter} common={stores.common}>
         {children}
       </Provider>
     </div>

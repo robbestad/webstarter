@@ -2,10 +2,11 @@ import Inferno from 'inferno'
 import Component from 'inferno-component'
 import config from '../../config/index';
 import {Link} from 'inferno-router';
+import { connect } from 'inferno-mobx'
 
+@connect(['counter'])
 export default class Layout extends Component {
-  render({ stores, children, hostname  }) {
-    debugger;
+  render({children}) {
     return <div className="grid">
       <div className="row">
         <div className="col-4 border-left border-bottom">
