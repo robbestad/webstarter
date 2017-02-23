@@ -18,29 +18,20 @@ export default class Layout extends Component {
             </div>
           </div>
         </div>
-        <div className="col-large-3 border-left border-bottom hide-medium hide-small">
+        <div className="col-large-4 border-left border-bottom hide-medium hide-small">
           <div className="content">
             <div className="font-style-regular font-size-l">
               <div className="inner">Your are<br/>visitor <span className="font-style-extra-bold italic">#{counter.getCount()}</span></div>
             </div>
           </div>
         </div>
-        <div className="col-large-3 border-left border-bottom hide-medium hide-small">
+        <div className="col-large-4 border-left border-bottom hide-medium hide-small">
           <div className="content ">
             <div className="font-semi-bold font-size-l italic">
-              <div className="inner">2</div>
+              <div className="inner"><Link to="page/speed">SPEED IS KEY</Link><br/></div>
             </div>
           </div>
         </div>
-        <div className="col-large-2 col-medium-2 border-left border-bottom border-right hide-medium hide-small">
-          <div className="content ">
-            <div className="font-semi-bold font-size-l italic">
-              <div className="inner"></div>
-            </div>
-          </div>
-        </div>
-
-
 
 
       </div>
@@ -62,7 +53,7 @@ export default class Layout extends Component {
       <div className="row">
         <div className="col-12 border-left border-bottom border-right">
           <div className="content">
-            I got the entire row to myself
+            <div className="inner">Your are<br/>visitor <span className="font-style-extra-bold italic">#{counter.getCount()}</span></div>
           </div>
         </div>
       </div>
