@@ -14,12 +14,12 @@ import config from '../config/index';
 //   }
 //   return this;
 // };
-// Gun.chain.live = function(cb, opt){
-//   return this.on(function(val, field){
-//     delete val._;
-//     cb.call(this, val, field);
-//   }, opt);
-// };
+Gun.chain.live = function (cb, opt) {
+  return this.on(function (val, field) {
+    delete val._;
+    cb.call(this, val, field);
+  }, opt);
+};
 
 /**
  * @class Counter
@@ -29,49 +29,30 @@ export default class Counter {
   constructor(request, state = {}) {
     const gun = Gun(config.gundb);
     console.log('using ' + config.gundb);
+    let db = gun.get('webstarter').path('hits');
 
-    let db = gun.get("webstarter/hits");
+    const updateData = (sum) => {
+      gun.get('webstarter').put({hits: sum}, function (ack) {
+        if (ack.err) {
+          console.error(ack.err);
+        }
+        console.log('Data synced');
+      });
+    };
 
-    let sum = 0;
-
-    db.on((data) => {
-      sum = ~~data.hits;
-      this.setCount(sum + 1);
+    let newSum = 0;
+    let hits = 0;
+    db.live(data => {
       console.log(data);
+      this.setCount(data);
+      hits = data;
+      newSum = ~~data + 1;
     });
-    // gun.get('webstarter/hits').put({hits: sum + 1});
-
-    gun.get('webstarter').path('hits').put(sum + 1, function (ack) {
-      if (ack.err) {
-        console.error(ack.err);
-      }
-      console.log('Data synced');
-    });
-
-    // db.count( value => {
-    //   this.setCount(value)
-    // });
-    // db.count(+1);
-
-    // let sum = 0;
-    // db.map().val(val => {
-    //   return Number(val);
-    // });
-    // var sum = db.map(val=>val).reduce(function(acc, val) {
-    //   return acc + val;
-    // }, 0);
-
-    // console.log(sum);
-    // this.setCount(sum);
-
-    // gun.get('webstarter/counter').val((node) =>{
-    //   console.log(node)
-    //   this.setCount(node)
-    // });
+    updateData(newSum);
 
     this.request = request;
     extendObservable(this, {
-      hits: sum
+      hits
     }, state)
   }
 
