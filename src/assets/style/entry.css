@@ -4,7 +4,6 @@
 @import "./typography.css";
 
 .grid {
-    overflow: visible;
     background: var(--background-color);
 }
 
