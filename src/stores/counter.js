@@ -2,6 +2,8 @@ const {extendObservable, observable} = require('mobx');
 const Gun = require('gun');
 import config from '../config/index';
 const gun = Gun(config.gundb);
+
+console.log('using '+config.gundb);
 // Gun.chain.count = function (num) {
 //   if (typeof num === 'number') {
 //     this.path(Gun.text.random()).put(num);
