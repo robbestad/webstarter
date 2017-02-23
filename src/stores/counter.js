@@ -28,7 +28,7 @@ import config from '../config/index';
 export default class Counter {
   constructor(request, state = {}) {
     const gun = Gun(config.gundb);
-    console.log('using '+config.gundb);
+    console.log('using ' + config.gundb);
 
     let db = gun.get("webstarter/hits");
 
@@ -41,7 +41,12 @@ export default class Counter {
     });
     // gun.get('webstarter/hits').put({hits: sum + 1});
 
-    gun.get('webstarter').path('hits').put(sum+1);
+    gun.get('webstarter').path('hits').put(sum + 1, function (ack) {
+      if (ack.err) {
+        console.error(ack.err);
+      }
+      console.log('Data synced');
+    });
 
     // db.count( value => {
     //   this.setCount(value)
