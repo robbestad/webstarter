@@ -2,12 +2,12 @@ import Inferno from 'inferno'
 import Component from 'inferno-component'
 import config from '../../config/index';
 import {Link} from 'inferno-router';
-import { connect } from 'inferno-mobx'
+import {connect} from 'inferno-mobx'
 
 @connect(['counter'])
 export default class Layout extends Component {
   render({children}) {
-    const { counter } = this.props;
+    const {counter} = this.props;
     return <div className="grid">
 
       <div className="row">
@@ -21,14 +21,15 @@ export default class Layout extends Component {
         <div className="col-large-4 border-left border-bottom hide-medium hide-small">
           <div className="content">
             <div className="font-style-regular font-size-l">
-              <div className="inner">Your are<br/>visitor <span className="font-style-extra-bold italic">#{counter.getCount()}</span></div>
+              <div className="inner">Your are<br/>visitor <span
+                className="font-style-extra-bold italic">#{counter.getCount()}</span></div>
             </div>
           </div>
         </div>
         <div className="col-large-4 border-left border-bottom hide-medium hide-small">
           <div className="content ">
             <div className="font-semi-bold font-size-l italic">
-              <div className="inner"><Link to="page/speed">SPEED IS KEY</Link><br/></div>
+              <div className="inner"><Link to="/page/speed">SPEED IS KEY</Link><br/></div>
             </div>
           </div>
         </div>
@@ -39,7 +40,14 @@ export default class Layout extends Component {
         <div className="col-4 border-left border-bottom ">
           <div className="content">
             <div className="inner-left">
-              <Link to="/page/about">Hello my child</Link>
+              <ul>
+                <li>
+                  <Link to="/page/about">Hello my child</Link>
+                </li>
+                <li>
+                  <Link to="/page/mobx">MobX - Observable stores</Link>
+                </li>
+              </ul>
             </div>
 
           </div>
@@ -53,17 +61,32 @@ export default class Layout extends Component {
       <div className="row">
         <div className="col-12 border-left border-bottom border-right">
           <div className="content">
-            <div className="inner">Your are<br/>visitor <span className="font-style-extra-bold italic">#{counter.getCount()}</span></div>
+            <div className="inner">Your are<br/>visitor <span
+              className="font-style-extra-bold italic">#{counter.getCount()}</span></div>
           </div>
         </div>
       </div>
 
       <div className="row">
-        <div className="col-12 border-left border-bottom border-right">
+        <div className="col-4 border-left border-bottom ">
           <div className="content">
-            I got the entire row to myself
           </div>
         </div>
+        <div className="col-4 border-left border-bottom hide-medium hide-small">
+          <div className="content ">
+            <div className="font-semi-bold font-size-l italic">
+              <div className="inner"><Link to="/page/mobx">MOBX - OBSERVABLE STORES</Link><br/></div>
+            </div>
+          </div>
+        </div>
+        <div className="col-4  border-left border-bottom hide-medium hide-small">
+          <div className="content ">
+            <div className="font-semi-bold font-size-l italic">
+              <div className="inner"><Link to="/page/mobx">MOBX - OBSERVABLE STORES</Link><br/></div>
+            </div>
+          </div>
+        </div>
+
       </div>
 
     </div>
