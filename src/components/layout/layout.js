@@ -40,6 +40,11 @@ export default class Layout extends Component {
         <div className="col-4 border-left border-bottom ">
           <div className="content">
             <div className="inner-left">
+              <p><Link to="/page/about">Hello my child</Link></p>
+              <p><Link to="/page/about">An article on something interesting</Link></p>
+              <p><Link to="/page/about">Gzip, Brotfli and Zopfli</Link></p>
+              <p><Link to="/page/about">React vs Inferno</Link></p>
+              <p><Link to="/page/about">Redux or Mobx?</Link></p>
               <ul>
                 <li>
                   <Link to="/page/about">Hello my child</Link>
@@ -59,7 +64,7 @@ export default class Layout extends Component {
         </div>
       </div>
       <div className="row">
-        <div className="col-12 border-left border-bottom border-right">
+        <div className="hide-large col-medium-12 col-small-12 border-left border-bottom border-right">
           <div className="content">
             <div className="inner">Your are<br/>visitor <span
               className="font-style-extra-bold italic">#{counter.getCount()}</span></div>
