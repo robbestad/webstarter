@@ -29,7 +29,8 @@ export default class Klipp {
       method: 'post',
       headers: new Headers({
         'Content-type': 'application/json',
-        'charset': 'utf8'
+        'charset': 'utf8',
+        'x-userid': 'ikke fredf'
       }),
       body: JSON.stringify(data)
     };

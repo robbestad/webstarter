@@ -13,10 +13,10 @@ var webpackHotMiddleware = require("webpack-hot-middleware");
 var apiProxy = httpProxy.createProxyServer();
 //---------------------------------
 const compiler = webpack(config);
-const port = 5001;
+const port = 5002;
 
 app.get('/pages/*', (req, res)=> {
-  res.sendFile(path.join(__dirname, 'build/index.html'));
+  res.sendFile(path.join(__dirname, './build/index.html'));
 });
 
 // Start a webpack-dev-server
@@ -33,7 +33,6 @@ app.use(webpackDevMiddleware(compiler, {
     aggregateTimeout: 500,
     poll: 500
   },
-  port: 5002,
   stats: {
     colors: true,
     hash: false,
@@ -47,7 +46,7 @@ app.use(webpackDevMiddleware(compiler, {
 }));
 
 // Enables HMR
-app.use(webpackHotMiddleware(compiler));
+// app.use(webpackHotMiddleware(compiler));
 
 // Proxy api requests
 

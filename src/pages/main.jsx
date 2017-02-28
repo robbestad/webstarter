@@ -20,7 +20,6 @@ export default class Main extends Component {
 
   render() {
     const {klipp} = this.props;
-    console.log(klipp.items);
     return div({className: 'mtl'},
       div({className: 'row'},
         div({className: 'col c12'},

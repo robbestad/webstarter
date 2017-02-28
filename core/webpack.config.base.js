@@ -29,7 +29,7 @@ module.exports = {
     HMRPlugin,
     NamedModulesPlugin,
     HtmlWebpackPlugin,
-    HtmlWebpackInlineSourcePlugin,
+    // HtmlWebpackInlineSourcePlugin,
     CopyPlugin,
     ExtractPlugin,
     WebpackCleanupPlugin,
