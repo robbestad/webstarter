@@ -3,7 +3,7 @@ import {Router, match} from 'inferno-router';
 import {createBrowserHistory} from 'history';
 import './assets/style/origo.css';
 import './assets/style/override.css';
-import { Provider } from 'inferno-mobx'
+import {Provider} from 'inferno-mobx'
 import * as auth from './auth';
 // import {testConnection} from './actions/connection';
 
@@ -17,9 +17,14 @@ import App from './components/app'
 // React to changes
 autorun(stores);
 
+if (module.hot) {
+  autorun(stores);
+  console.log('reload');
+  // module.hot.accept();
+}
+
 // auth.configure();
 // const fetchCurrentUser = require('./auth/user').fetchCurrentUser;
-
 // testConnection();
 
 // Fetch data on route change
@@ -31,14 +36,8 @@ window.browserHistory.listen(location => {
   onEnter(match(routing, location), stores)
 });
 
-if (module.hot) {
-  require('inferno-devtools');
-  module.hot.accept();
-}
-
 Inferno.render(<Provider {...stores} >
-    <Router history={window.browserHistory}>
-      {routing}
-    </Router>
-  </Provider>
-  , container);
+  <Router history={window.browserHistory}>
+    {routing}
+  </Router>
+</Provider>, container);

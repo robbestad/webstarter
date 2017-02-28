@@ -62,7 +62,7 @@ if (isProd) {
   app.use(render);
 
   app.listen(config.http.port, function () {
-    logger('app:start')('Listening on port ' + config.http.port)
+    logger('app:start')('server.js listening on port ' + config.http.port)
   });
 
 

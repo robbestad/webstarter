@@ -29,7 +29,7 @@ export default class Main extends Component {
             ),
             h1({className: 'left'}, 'Administrasjon'),
             div({className: 'clear'}, `Denne siden er forbeholdt et utvalg administrative brukere. 
-            Hvis du ikke ser noen verktøy på denne siden betyr det at du ikke har tilgang.`)
+            Hvis du ikke ser noen verktøy på denne siden betyr disse at du ikke har tilgang.`)
           ),
         )),
       div({className: 'row'},
@@ -78,6 +78,7 @@ export default class Main extends Component {
       ;
   }
 }
+
 
 
 /*

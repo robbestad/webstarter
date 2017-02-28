@@ -13,43 +13,32 @@ var webpackHotMiddleware = require("webpack-hot-middleware");
 var apiProxy = httpProxy.createProxyServer();
 //---------------------------------
 const compiler = webpack(config);
-const port = 5002;
-
-app.get('/pages/*', (req, res)=> {
-  res.sendFile(path.join(__dirname, './build/index.html'));
-});
+const port = 5001;
 
 // Start a webpack-dev-server
-app.use(webpackDevMiddleware(compiler, {
+const middleware = webpackDevMiddleware(compiler, {
   publicPath: config.output.publicPath,
   headers: {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Expose-Headers': 'SourceMap,X-SourceMap'
   },
-  hot: false,
+  hot: true,
   compress: false,
-  historyApiFallback: true,
+  historyApiFallback: false,
   watchOptions: {
     aggregateTimeout: 500,
     poll: 500
   },
-  stats: {
-    colors: true,
-    hash: false,
-    timings: false,
-    version: false,
-    chunks: false,
-    modules: false,
-    children: false,
-    chunkModules: false
-  }
-}));
+  noInfo: true,
+  stats: { colors: true }
+});
+
+app.use(middleware);
 
 // Enables HMR
-// app.use(webpackHotMiddleware(compiler));
+app.use(webpackHotMiddleware(compiler));
 
 // Proxy api requests
-
 app.use('/api/*', function (req, res) {
   var proxiedUrl = req.baseUrl;
   var url = require('url');
@@ -66,9 +55,19 @@ app.use('/api/*', function (req, res) {
   });
 });
 
+app.use('/pages/*', (req, res)=> {
+  // res.sendFile(path.join(__dirname, 'build/index.html'));
+  // app.use('*', function response(req, res) {
+  res.write(middleware.fileSystem.readFileSync(path.join(__dirname, 'build/index.html')));
+  res.end();
+  // });
+});
+
+
 app.listen(port, 'localhost', function (err, result) {
   if (err) return logger('webpack:error', err);
-  logger('webpack:compiler')('Running on port ' + port)
+  logger('==> 🌎 Listening on port %s. Open up http://0.0.0.0:%s/ in your browser.', port, port);
+  // logger('webpack:compiler')('Running on port ' + port)
 });
 
 module.exports = app;

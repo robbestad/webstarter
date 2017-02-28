@@ -12,7 +12,7 @@ gulp.task('webpack', function(cb) {
 });
 
 gulp.task('webpack-watch', (cb) => {
-  const webpack_watch = spawn('webpack', ['--watch','--config', 'core/webpack.config.dev.js']);
+  const webpack_watch = spawn('webpack', ['--watch','--config', 'core/webpack.config.dev.js', '--hot']);
 
   webpack_watch.stdout.on('data', (data) => {
     console.log(`stdout: ${data}`);
