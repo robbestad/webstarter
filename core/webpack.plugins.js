@@ -32,8 +32,8 @@ exports.HtmlWebpackPlugin = new HtmlWebpackPlugin({
   inject: true,
   cache: false,
   appMountId: 'root',
-  inlineSource: '.(css)$',
-  excludeAssets: [/styles.css/],
+  // inlineSource: '.(css)$',
+  excludeAssets: [/origo.css/],
   minify: {
     removeComments: isProd,
     collapseWhitespace: isProd,

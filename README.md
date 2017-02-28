@@ -36,10 +36,16 @@ A project that gets you started with the latest and greatest frontend tech.
 
 The source lives in the ```src``` folder.
 
-The index.html is generated from the ```src/templtes/default.ejs``` template.
+The index.html is generated from the ```src/templates/default.ejs``` template.
 
 Any asset you want to add -- for instance css, local images and so on -- should be placed in the ```src/assets``` folder and 
 referenced with ```/assets/``` preceding the file name.
+
+## Custom @NRK packages
+
+### ORIGO DESIGN
+
+Enter *node_modules/@nrk/origo-design* and execute ```grunt minimal``` to run a new CSS build. Update minimal.scss if you want to include more/less stylesheets. Copy the output of the _dist_ folder to _src/assets/style_.
 
 ## License
 

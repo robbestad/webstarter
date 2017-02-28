@@ -27,7 +27,6 @@ router
     await send(ctx, root + ctx.path);
   });
 
-
 const app = new koa()
   .use(favicon(path.join(__dirname, root, 'assets/icons/favicon.ico')))
   .use(router.routes())
@@ -42,48 +41,6 @@ const app = new koa()
   })))
   .use(catcher)
   .use(context);
-
-if (!isProd) {
-
-// Run DEV server for hot-reloading
-  const WebpackDevServer = require('webpack-dev-server');
-  const webpack = require('webpack');
-  const config = require('../../core/webpack.config.dev.js');
-  const logger = require('debug');
-//---------------------------------
-  const compiler = webpack(config);
-  const port = 5002;
-
-  new WebpackDevServer(compiler, {
-    publicPath: config.output.publicPath,
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Expose-Headers': 'SourceMap,X-SourceMap'
-    },
-    hot: false,
-    compress: false,
-    watchOptions: {
-      aggregateTimeout: 500,
-      poll: 500
-    },
-    stats: {
-      colors: true,
-      hash: false,
-      timings: false,
-      version: false,
-      chunks: false,
-      modules: false,
-      children: false,
-      chunkModules: false
-    }
-  }).listen(port, 'localhost', function (err, result) {
-    if (err) return logger('webpack:error', err);
-
-    logger('webpack:compiler')('Running on port ' + port)
-  });
-
-
-}
 
 if (isProd) {
   app

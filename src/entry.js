@@ -1,8 +1,11 @@
 import Inferno from 'inferno';
 import {Router, match} from 'inferno-router';
 import {createBrowserHistory} from 'history';
-import './assets/style/entry.css';
+import './assets/style/origo.css';
+import './assets/style/override.css';
 import { Provider } from 'inferno-mobx'
+import * as auth from './auth';
+// import {testConnection} from './actions/connection';
 
 require('offline-plugin/runtime').install();
 const onEnter = require('./components/helpers/onEnter');
@@ -13,6 +16,11 @@ import App from './components/app'
 
 // React to changes
 autorun(stores);
+
+// auth.configure();
+// const fetchCurrentUser = require('./auth/user').fetchCurrentUser;
+
+// testConnection();
 
 // Fetch data on route change
 const container = document.getElementById('root');

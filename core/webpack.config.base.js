@@ -20,7 +20,7 @@ const {
 module.exports = {
   output: {
     filename: '[name].js',
-    path: path.join(__dirname, '..', isProd ? 'static': 'build'),
+    path: path.join(__dirname, '..', isProd ? 'static' : 'build'),
     publicPath: '/',
     chunkFilename: '[name]-[chunkhash].js',
   },
@@ -46,7 +46,9 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx'],
     alias: {
-      'core': path.join(__dirname, '..', 'core')
+      'core': path.join(__dirname, '..', 'core'),
+      'react': 'inferno-compat',
+      'react-dom': 'inferno-compat'
     }
   }
 };
