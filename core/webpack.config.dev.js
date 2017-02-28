@@ -10,7 +10,6 @@ Object.assign(config, {
     hints: false
   },
   entry: [
-    // 'webpack-dev-server/client?http://localhost:5002',
     'webpack/hot/only-dev-server',
     'webpack-hot-middleware/client?reload=true',
     './src/entry.js'
@@ -25,10 +24,7 @@ Object.assign(config, {
 
 config.plugins.push(
   new webpack.optimize.OccurrenceOrderPlugin(),
-  // new webpack.HotModuleReplacementPlugin(),
   new webpack.NoEmitOnErrorsPlugin()
 );
-
-logger('webpack:compiler')('Running on port ' + process.env.PORT);
 
 module.exports = config;

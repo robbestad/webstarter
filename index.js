@@ -8,8 +8,7 @@ require('./src/components/helpers/logger');
 require('babel-register');
 
 if (process.env.NODE_ENV !== "production") {
-  require('./dev-server');
-  // require('http').createServer(require('./app').callback()).listen(process.env.PORT || 1998);
+  require('./src/server/dev-server');
 } else {
   require('./src/server/server');
 }

@@ -1,19 +1,19 @@
 'use strict';
 const path = require('path');
 
-// Run DEV server for hot-reloading
 const webpack = require('webpack');
 const express = require("express");
 const httpProxy = require("http-proxy");
-const config = require('./core/webpack.config.dev.js');
+const config = require('../../core/webpack.config.dev.js');
 const logger = require('debug');
-var app = express();
-var webpackDevMiddleware = require("webpack-dev-middleware");
-var webpackHotMiddleware = require("webpack-hot-middleware");
-var apiProxy = httpProxy.createProxyServer();
+const webpackDevMiddleware = require("webpack-dev-middleware");
+const webpackHotMiddleware = require("webpack-hot-middleware");
+const apiProxy = httpProxy.createProxyServer();
 //---------------------------------
 const compiler = webpack(config);
 const port = 5001;
+
+const app = express();
 
 // Start a webpack-dev-server
 const middleware = webpackDevMiddleware(compiler, {
@@ -30,15 +30,13 @@ const middleware = webpackDevMiddleware(compiler, {
     poll: 500
   },
   noInfo: true,
-  stats: { colors: true }
+  stats: {colors: true}
 });
 
 app.use(middleware);
 
-// Enables HMR
 app.use(webpackHotMiddleware(compiler));
 
-// Proxy api requests
 app.use('/api/*', function (req, res) {
   var proxiedUrl = req.baseUrl;
   var url = require('url');
@@ -56,18 +54,13 @@ app.use('/api/*', function (req, res) {
 });
 
 app.use('/pages/*', (req, res)=> {
-  // res.sendFile(path.join(__dirname, 'build/index.html'));
-  // app.use('*', function response(req, res) {
-  res.write(middleware.fileSystem.readFileSync(path.join(__dirname, 'build/index.html')));
+  res.write(middleware.fileSystem.readFileSync(path.join(__dirname, '../../build/index.html')));
   res.end();
-  // });
 });
-
 
 app.listen(port, 'localhost', function (err, result) {
   if (err) return logger('webpack:error', err);
-  logger('==> 🌎 Listening on port %s. Open up http://0.0.0.0:%s/ in your browser.', port, port);
-  // logger('webpack:compiler')('Running on port ' + port)
+  logger('webpack:compiler')(`==> Listening on port ${port}. Open up http://0.0.0.0:${port}/ in your browser`)
 });
 
 module.exports = app;

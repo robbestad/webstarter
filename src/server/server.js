@@ -65,7 +65,6 @@ if (isProd) {
     logger('app:start')('server.js listening on port ' + config.http.port)
   });
 
-
 }
 
 module.exports = app;
