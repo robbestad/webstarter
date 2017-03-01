@@ -1,6 +1,6 @@
 import requestCreator from '../components/helpers/request'
 import Common from '../stores/common'
-import Klipp from '../stores/klipp'
+import Counter from '../stores/counter'
 
 // All our stores are listed here
 function createStores(state, token) {
@@ -15,7 +15,7 @@ function createStores(state, token) {
 
   const request = requestCreator(state.common.hostname, token);
   return {
-    klipp: new Klipp(request, state.common),
+    counter: new Counter(),
     common: new Common(request, state.common),
   }
 }

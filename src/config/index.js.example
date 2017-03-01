@@ -1,6 +1,7 @@
 const path = require( 'path' )
 const config = {
     title: 'Web starter',
+    gundb: 'http://localhost:8080/gun',
 	http: {
 		port: 5001,
 		favicon: path.join( __dirname, 'assets/favicon.ico' ),

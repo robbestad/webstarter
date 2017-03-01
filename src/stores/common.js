@@ -8,7 +8,7 @@ module.exports = class Common {
   constructor(request, state = {}) {
     this.request = request;
     extendObservable(this, {
-      title: 'Klipp Admin',
+      title: 'Webstarter',
       statusCode: 200,
       hostname: 'localhost'
     }, state)

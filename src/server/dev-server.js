@@ -38,9 +38,9 @@ app.use(middleware);
 app.use(webpackHotMiddleware(compiler));
 
 app.use('/api/*', function (req, res) {
-  var proxiedUrl = req.baseUrl;
-  var url = require('url');
-  var url_parts = url.parse(req.url, true);
+  let proxiedUrl = req.baseUrl;
+  const url = require('url');
+  const url_parts = url.parse(req.url, true);
   if (url_parts.search !== null) {
     proxiedUrl += url_parts.search;
   }
@@ -53,7 +53,7 @@ app.use('/api/*', function (req, res) {
   });
 });
 
-app.use('/pages/*', (req, res)=> {
+app.use('/pages/*', (req, res) => {
   res.write(middleware.fileSystem.readFileSync(path.join(__dirname, '../../build/index.html')));
   res.end();
 });
