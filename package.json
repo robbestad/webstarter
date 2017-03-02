@@ -112,9 +112,6 @@
     "webpack-hot-middleware": "^2.17.0"
   },
   "dependencies": {
-    "@nrk/origo-design": "^13.11.3",
-    "@nrk/origo-http": "^5.1.0",
-    "@nrk/origo-react": "6.25.1",
     "babel-plugin-transform-runtime": "^6.23.0",
     "colors": "^1.1.2",
     "eventsource-polyfill": "^0.9.6",
