@@ -1,6 +1,7 @@
 import requestCreator from '../components/helpers/request'
 import Common from '../stores/common'
 import Counter from '../stores/counter'
+import EventLog from '../stores/eventLog'
 
 // All our stores are listed here
 function createStores(state, token) {
@@ -16,6 +17,7 @@ function createStores(state, token) {
   const request = requestCreator(state.common.hostname, token);
   return {
     counter: new Counter(),
+    eventLog: new EventLog(),
     common: new Common(request, state.common),
   }
 }

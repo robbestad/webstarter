@@ -3,13 +3,16 @@ import {Link} from 'inferno-router';
 import Component from 'inferno-component';
 import {connect} from 'inferno-mobx'
 
-@connect(['counter'])
+@connect(['counter', 'eventLog'])
 export default class Main extends Component {
   render() {
-    const { counter } = this.props;
+    const {counter, eventLog} = this.props;
+    eventLog.setEvent('Hit main.jsx ' + new Date());
+    let count = eventLog.getEvents().peek().length;
+
     return t('div', null,
       t('h2', null, 'Hello dear user ....:)'),
-      t('div', null, `${counter.getCount()}`),
+      t('div', null, `${count}`),
     );
   }
 

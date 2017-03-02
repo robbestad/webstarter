@@ -29,7 +29,8 @@ Gun.chain.live = function (cb, opt) {
 
 export default class Counter {
   constructor(request, state = {}) {
-    const gun = Gun(config.gundb);
+    let hits = '';
+    /*const gun = Gun(config.gundb);
     console.log('using ' + config.gundb);
     // let db = gun.get('webstarter').path('hits');
 
@@ -43,11 +44,11 @@ export default class Counter {
       });
     };
     const db = gun.get('count');
-    let hits = '';
+
     db.on((data) => {
       this.setCount(Object.keys(data).length);
     });
-    db.count(+1);
+    db.count(+1);*/
     this.request = request;
     extendObservable(this, {
       hits
