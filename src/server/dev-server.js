@@ -53,7 +53,7 @@ app.use('/api/*', function (req, res) {
   });
 });
 
-app.use('/pages/*', (req, res) => {
+app.use('/page/*', (req, res) => {
   res.write(middleware.fileSystem.readFileSync(path.join(__dirname, '../../build/index.html')));
   res.end();
 });

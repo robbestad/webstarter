@@ -11,7 +11,7 @@ export default function () {
     <Route component={ Layout }>
       <IndexRoute component={ Main }/>
       <Route path="/page/about" component={ Sub }/>
-      <Route path="/page/mobx" component={ Mobx }/>
+      <Route path="/page/:key" component={ Mobx }/>
       <Route path="*" component={ NotFound }/>
     </Route>
   )
