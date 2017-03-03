@@ -32,6 +32,15 @@ A project that gets you started with the latest and greatest frontend tech.
 
 4. Distribution build is generated with ```yarn start``` or ```npm run start``` and defaults to port 1998. It will generate tiny, optimized vendor and app bundles and a minimized index.html.
 
+## API server
+
+The example project comes with a setup to a redis server 
+located at [koa-redis-server](https://github.com/svenanders/koa-redis-server). 
+This needs to be configured with a *secret.json* file in *src/assets/config*, and must
+be identical in both this setup and in the redis server setup.
+
+**You don't need to set up any of this to use the project.**
+
 ## Developing
 
 The source lives in the ```src``` folder.
