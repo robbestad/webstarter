@@ -3,11 +3,15 @@ import Component from 'inferno-component'
 import config from '../../config/index';
 import {Link} from 'inferno-router';
 import {connect} from 'inferno-mobx'
+import * as constants from "../../constants";
 
-@connect(['counter'])
+@connect(["counter", constants.CONTENTSTORE])
 export default class Layout extends Component {
   render({children}) {
     const {counter} = this.props;
+    const {key} = this.props.params;
+    const contentStore = this.props[constants.CONTENTSTORE];
+
     return <div className="grid">
 
       <div className="row">
@@ -40,18 +44,10 @@ export default class Layout extends Component {
         <div className="col-4 border-left border-bottom ">
           <div className="content">
             <div className="inner-left">
-              <p><Link to="/page/about">Hello my child</Link></p>
-              <p><Link to="/page/about">An article on something interesting</Link></p>
-              <p><Link to="/page/about">Gzip, Brotfli and Zopfli</Link></p>
-              <p><Link to="/page/about">React vs Inferno</Link></p>
-              <p><Link to="/page/about">Redux or Mobx?</Link></p>
               <ul>
-                <li>
-                  <Link to="/page/about">Hello my child</Link>
-                </li>
-                <li>
-                  <Link to="/page/mobx">MobX - Observable stores</Link>
-                </li>
+                  {
+                    Object.keys(contentStore.get()).map(item => <li><Link to={`/page/view/${item}`}>{item}</Link></li>)
+                  }
               </ul>
             </div>
 
@@ -80,14 +76,14 @@ export default class Layout extends Component {
         <div className="col-4 border-left border-bottom hide-medium hide-small">
           <div className="content ">
             <div className="font-semi-bold font-size-l italic">
-              <div className="inner"><Link to="/page/mobx">MOBX - OBSERVABLE STORES</Link><br/></div>
+              <div className="inner"><Link to={`/page/edit/${key}`}>Edit</Link><br/></div>
             </div>
           </div>
         </div>
         <div className="col-4  border-left border-bottom hide-medium hide-small">
           <div className="content ">
             <div className="font-semi-bold font-size-l italic">
-              <div className="inner"><Link to="/page/mobx">MOBX - OBSERVABLE STORES</Link><br/></div>
+              <div className="inner"><Link to="/page/view/mobx">-.-</Link><br/></div>
             </div>
           </div>
         </div>

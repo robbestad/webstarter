@@ -21,8 +21,13 @@ export default class ContentStore {
   constructor(request, state = {}) {
     const eventLog = JSON.stringify([]);
     extendObservable(this, {
-      content: observable.shallowObject(store.get('content') ? JSON.parse(store.get('content')) : json)
+      content: observable.shallowObject(store.get('content') ? store.get('content') : json)
     }, state)
+  }
+
+  put(key, {title, content}) {
+    store.set('content', {...store.get('content'), [key]: {title, content}});
+    this.content = {...store.get('content'), [key]: {title, content}};
   }
 
   putContent() {
@@ -34,6 +39,21 @@ export default class ContentStore {
     //       text: result.text
     //     })
     //   })
+  }
+
+  delete(key) {
+    const filtered = Object.keys(this.content).filter(item => item !== key)
+    this.content = filtered;
+    store.set('content', filtered);
+
+  }
+
+  getByKey(key) {
+    if (this.content[key]) {
+      return this.content[key];
+    } else {
+      return {title: '', content: ''}
+    }
   }
 
   get() {

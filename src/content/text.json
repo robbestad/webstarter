@@ -1,0 +1,10 @@
+{
+  "mobx": {
+    "title": "MobX",
+    "content": "MobX implements the ideas of reactive programming. There are values that are observable and functions that react when those values change. MobX ensures only the minimal possible set of observers is triggered on every change.\n     <p>\n        We have:\n      </p>\n      <ul>\n        <li>\n          @observable – a property whose changes observers subscribe to\n        </li>\n        <li>\n          @observer – a component whose render() method observes values\n        </li>\n        <li>\n          @computed – a method whose value can be fully derived from observables\n        </li>\n        <li>\n          @action – a method that changes state, analogous to a Redux reducer\n        </li>\n        <li>\n          @inject – a decorator that injects global stores into a component’s props\n        </li>\n      </ul>\n      <p>\n        That’s basically all you need to know. Once your component is an @observer, you never have to worry about what\n        it’s observing. MobX ensures it reacts only to the values that it uses during rendering.\n      </p>"
+  },
+  "brotli": {
+    "title": "Brotli",
+    "content": "Brotli is a new compression algorithm optimized for the web, in particular small text documents. Brotli decompression is at least as fast as for gzip while significantly improving the compression ratio. The price we pay is that compression is much slower than gzip. Brotli is therefore most effective for serving static content such as fonts and html pages"
+  }
+}

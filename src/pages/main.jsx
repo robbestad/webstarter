@@ -7,7 +7,7 @@ import {connect} from 'inferno-mobx'
 export default class Main extends Component {
   render() {
     const {counter, eventLog} = this.props;
-    eventLog.setEvent('Hit main.jsx ' + new Date());
+    eventLog.setEvent('Hit edit.jsx ' + new Date());
     let count = eventLog.getEvents().peek().length;
 
     return t('div', null,
@@ -15,6 +15,5 @@ export default class Main extends Component {
       t('div', null, `${count}`),
     );
   }
-
 
 }

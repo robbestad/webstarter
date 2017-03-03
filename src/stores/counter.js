@@ -3,25 +3,25 @@ const Gun = require('gun');
 import config from '../config/index';
 
 
-Gun.chain.count = function (num) {
-  if (typeof num === 'number') {
-    this.path(Gun.text.random()).put(num);
-  }
-  if (typeof num === 'function') {
-    var sum = 0;
-    this.map().val(function (val) {
-      num(sum += val);
-    });
-  }
-  return this;
-};
-
-Gun.chain.live = function (cb, opt) {
-  return this.on(function (val, field) {
-    delete val._;
-    cb.call(this, val, field);
-  }, opt);
-};
+// Gun.chain.count = function (num) {
+//   if (typeof num === 'number') {
+//     this.path(Gun.text.random()).put(num);
+//   }
+//   if (typeof num === 'function') {
+//     var sum = 0;
+//     this.map().val(function (val) {
+//       num(sum += val);
+//     });
+//   }
+//   return this;
+// };
+//
+// Gun.chain.live = function (cb, opt) {
+//   return this.on(function (val, field) {
+//     delete val._;
+//     cb.call(this, val, field);
+//   }, opt);
+// };
 
 /**
  * @class Counter
@@ -56,13 +56,13 @@ export default class Counter {
   }
 
   getCount() {
-    console.log('calling getCount');
-    console.log(this.hits);
+    // console.log('calling getCount');
+    // console.log(this.hits);
     return this.hits;
   }
 
   setCount(count) {
-    console.log('calling setcount');
+    // console.log('calling setcount');
     this.hits = count;
   }
 };

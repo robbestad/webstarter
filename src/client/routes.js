@@ -3,7 +3,8 @@ import {Route, IndexRoute} from 'inferno-router'
 import Layout from '../components/layout/layout.js'
 import NotFound from '../components/layout/404.js'
 import Sub from '../pages/about';
-import Mobx from '../pages/mobx';
+import View from '../pages/view';
+import Edit from '../pages/edit';
 import Main from '../pages/main'
 
 export default function () {
@@ -11,7 +12,8 @@ export default function () {
     <Route component={ Layout }>
       <IndexRoute component={ Main }/>
       <Route path="/page/about" component={ Sub }/>
-      <Route path="/page/:key" component={ Mobx }/>
+      <Route path="/page/view/:key" component={ View }/>
+      <Route path="/page/edit/:key" component={ Edit }/>
       <Route path="*" component={ NotFound }/>
     </Route>
   )

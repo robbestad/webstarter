@@ -22,7 +22,7 @@
     "preversion": "npm test",
     "postversion": "sh scripts/deploy.sh ",
     "lint": "eslint ./src --ext=.js,.jsx",
-    "pretest": "npm run lint",
+    "__pretest": "npm run lint",
     "test": "mocha --compilers js:babel-core/register ./test/test/**/*",
     "cover": "nyc --reporter=lcov --reporter=text-lcov npm test"
   },
