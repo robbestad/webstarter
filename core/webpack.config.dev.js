@@ -24,7 +24,11 @@ Object.assign(config, {
 
 config.plugins.push(
   new webpack.optimize.OccurrenceOrderPlugin(),
-  new webpack.NoEmitOnErrorsPlugin()
+  new webpack.NoEmitOnErrorsPlugin(),
+  new webpack.EnvironmentPlugin([
+    'NODE_ENV',
+    'development'
+  ])
 );
 
 module.exports = config;

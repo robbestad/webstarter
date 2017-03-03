@@ -13,7 +13,7 @@ export default function () {
       <IndexRoute component={ Main }/>
       <Route path="/page/about" component={ Sub }/>
       <Route path="/page/view/:key" component={ View }/>
-      <Route path="/page/edit/:key" component={ Edit }/>
+      {process.env.NODE_ENV === "development" && <Route path="/page/edit/:key" component={ Edit }/>}
       <Route path="*" component={ NotFound }/>
     </Route>
   )

@@ -1,7 +1,6 @@
 import Component from 'inferno-component';
 import Inferno from 'inferno';
 import {connect} from 'inferno-mobx'
-import InfernoServer from 'inferno-server';
 
 import '../assets/style/edit.css';
 import * as constants from "../constants";
@@ -66,13 +65,6 @@ export default class Main extends Component {
     const json = contentStore.getByKey(key);
 
     return <div>
-      {/*<form>*/}
-        {/*<select id="key" onChange={this.handleSelect} value={this.state.key} className="input-select">*/}
-          {/*{Object.keys(contentStore.get()).map(item => <option value={asKey(item)}>{item}</option>)}*/}
-          {/*<option value="">(Opprett ny)</option>*/}
-        {/*</select>*/}
-      {/*</form>*/}
-
       <form id="contentForm" onSubmit={this.handleSubmit}>
         <p>
           <input id="title" type="text" value={this.state.title}

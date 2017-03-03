@@ -45,9 +45,9 @@ export default class Layout extends Component {
           <div className="content">
             <div className="inner-left">
               <ul>
-                  {
-                    Object.keys(contentStore.get()).map(item => <li><Link to={`/page/view/${item}`}>{item}</Link></li>)
-                  }
+                {
+                  Object.keys(contentStore.get()).map(item => <li><Link to={`/page/view/${item}`}>{item}</Link></li>)
+                }
               </ul>
             </div>
 
@@ -68,7 +68,7 @@ export default class Layout extends Component {
         </div>
       </div>
 
-      <div className="row">
+      {process.env.NODE_ENV === "development" && <div className="row">
         <div className="col-4 border-left border-bottom ">
           <div className="content">
           </div>
@@ -83,12 +83,12 @@ export default class Layout extends Component {
         <div className="col-4  border-left border-bottom hide-medium hide-small">
           <div className="content ">
             <div className="font-semi-bold font-size-l italic">
-              <div className="inner"><Link to="/page/view/mobx">-.-</Link><br/></div>
+              <div className="inner"><Link to="/">-.-</Link><br/></div>
             </div>
           </div>
         </div>
 
-      </div>
+      </div>}
 
     </div>
   }

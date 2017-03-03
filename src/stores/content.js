@@ -37,9 +37,13 @@ export default class ContentStore {
   put(key, {title, content}) {
     store.set('content', {...store.get('content'), [key]: {title, content}});
     this.content = {...store.get('content'), [key]: {title, content}};
+    this.storeContentToRedis();
+  }
 
+  storeContentToRedis() {
     this.putContent(this.content)
-      .then(res => console.log(res));
+      .then(res => console.log(res))
+      .catch(err => console.error(err));
   }
 
   getContent() {
@@ -75,6 +79,7 @@ export default class ContentStore {
     delete data[key];
     store.set('content', {...data});
     this.content = {...data};
+    this.storeContentToRedis();
   }
 
   getByKey(key) {
