@@ -10,8 +10,45 @@ const webpackDevMiddleware = require("webpack-dev-middleware");
 const webpackHotMiddleware = require("webpack-hot-middleware");
 const apiProxy = httpProxy.createProxyServer();
 //---------------------------------
+const curl = require('curlrequest');
 const compiler = webpack(config);
 const port = 5001;
+const bodyParser = require('body-parser');
+const crypto = require('crypto');
+
+const getContent = (phrase) => new Promise(resolve => {
+  const hash = crypto.createHash('sha256').update(require('../config/secret.json') + phrase).digest('base64');
+  curl.request({
+    url: `https://redis.robbestad.no/content`,
+    headers: {
+      accept: 'application/json',
+      phrase,
+      hash
+    },
+    pretend: false
+  }, function (err, stdout) {
+    resolve(stdout);
+  })
+});
+
+const saveContent = (phrase, data) => new Promise(resolve => {
+  const hash = crypto.createHash('sha256').update(require('../config/secret.json') + phrase).digest('base64');
+  curl.request({
+    method: "PUT",
+    url: "https://redis.robbestad.no/content",
+    headers: {
+      accept: 'application/json',
+      phrase,
+      hash
+    },
+    data: JSON.stringify(data),
+    pretend: false,
+    timeout: 10
+  }, function (err, stdout) {
+    resolve(stdout);
+    if (err) reject(err);
+  })
+});
 
 const app = express();
 
@@ -37,20 +74,16 @@ app.use(middleware);
 
 app.use(webpackHotMiddleware(compiler));
 
-app.use('/api/*', function (req, res) {
-  let proxiedUrl = req.baseUrl;
-  const url = require('url');
-  const url_parts = url.parse(req.url, true);
-  if (url_parts.search !== null) {
-    proxiedUrl += url_parts.search;
-  }
-  req.url = proxiedUrl;
-  apiProxy.web(req, res, {
-    target: {
-      port: 22338,
-      host: "localhost"
-    }
-  });
+app.get('/api/content', (req, res) => {
+  const {phrase} = req.headers;
+  res.set('Content-Type', 'application/json');
+  getContent(phrase).then(res.send.bind(res));
+});
+app.put('/api/content', bodyParser.json(), (req, res) => {
+  const {phrase} = req.headers;
+  res.set('Content-Type', 'application/json');
+  // if (!JSON.stringify(req.body) === "{}")
+  saveContent(phrase, req.body).then(res.send.bind(res));
 });
 
 app.use('/page/*', (req, res) => {

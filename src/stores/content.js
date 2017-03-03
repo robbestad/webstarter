@@ -12,6 +12,8 @@ const plugins = [
 const store = engine.createStore(storages, plugins);
 import json from '../content/text.json';
 
+store.clearAll();
+
 
 /**
  * @class ContentStore
@@ -19,33 +21,60 @@ import json from '../content/text.json';
 
 export default class ContentStore {
   constructor(request, state = {}) {
-    const eventLog = JSON.stringify([]);
     extendObservable(this, {
+      request,
       content: observable.shallowObject(store.get('content') ? store.get('content') : json)
-    }, state)
+    }, state);
+
+    const data = {...store.get('content')};
+    this.getContent()
+      .then(json => {
+        this.content = JSON.parse(json.data);
+        store.set('content', {...this.content});
+      });
   }
 
   put(key, {title, content}) {
     store.set('content', {...store.get('content'), [key]: {title, content}});
     this.content = {...store.get('content'), [key]: {title, content}};
+
+    this.putContent(this.content)
+      .then(res => console.log(res));
   }
 
-  putContent() {
-    // return this.request(`api/todos/add`, {text})
-    //   .then(result => {
-    //     // Add to list
-    //     this.items.push({
-    //       _id: result._id,
-    //       text: result.text
-    //     })
-    //   })
+  getContent() {
+    const opts = {
+      method: 'GET',
+      headers: new Headers({
+        "Content-type": "application/json",
+        "phrase": Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 255)
+      })
+    };
+    return fetch('/api/content', opts)
+      .then(response => response.json())
+      .then(json => json)
+  }
+
+  putContent(data) {
+    console.log('putcontent')
+    console.log({...data})
+    const opts = {
+      method: 'PUT',
+      headers: new Headers({
+        "Content-type": "application/json",
+        "phrase": Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 255)
+      }),
+      body: JSON.stringify({...data})
+    };
+    return fetch('/api/content', opts)
+      .then(response => response)
   }
 
   delete(key) {
-    const filtered = Object.keys(this.content).filter(item => item !== key)
-    this.content = filtered;
-    store.set('content', filtered);
-
+    const data = {...store.get('content')};
+    delete data[key];
+    store.set('content', {...data});
+    this.content = {...data};
   }
 
   getByKey(key) {

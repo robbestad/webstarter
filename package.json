@@ -113,7 +113,9 @@
   },
   "dependencies": {
     "babel-plugin-transform-runtime": "^6.23.0",
+    "body-parser": "^1.17.0",
     "colors": "^1.1.2",
+    "curlrequest": "^1.0.1",
     "eventsource-polyfill": "^0.9.6",
     "express": "^4.14.1",
     "extract-text-webpack-plugin": "^2.0.0",

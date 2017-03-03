@@ -12,9 +12,9 @@ export default class Main extends Component {
     const json = content.get()[key];
 
     return <div>
-      <h2>{json.title}</h2>
+      <h2>{json && json.title}</h2>
       <p>
-        {asString(json.content)}
+        {json && asString(json.content)}
       </p>
     </div>
   }

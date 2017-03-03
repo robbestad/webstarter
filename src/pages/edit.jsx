@@ -47,6 +47,7 @@ export default class Main extends Component {
     });
 
     this.props.content.put(key, {title, content});
+    this.context.router.push(`/page/view/${key}`)
   }
 
   handleChange(e) {
@@ -65,12 +66,12 @@ export default class Main extends Component {
     const json = contentStore.getByKey(key);
 
     return <div>
-      <form>
-        <select id="key" onChange={this.handleSelect} value={this.state.key} className="input-select">
-          {Object.keys(contentStore.get()).map(item => <option value={asKey(item)}>{item}</option>)}
-          <option value="">(Opprett ny)</option>
-        </select>
-      </form>
+      {/*<form>*/}
+        {/*<select id="key" onChange={this.handleSelect} value={this.state.key} className="input-select">*/}
+          {/*{Object.keys(contentStore.get()).map(item => <option value={asKey(item)}>{item}</option>)}*/}
+          {/*<option value="">(Opprett ny)</option>*/}
+        {/*</select>*/}
+      {/*</form>*/}
 
       <form id="contentForm" onSubmit={this.handleSubmit}>
         <p>

@@ -1,5 +1,5 @@
 const {extendObservable, observable} = require('mobx');
-const Gun = require('gun');
+// const Gun = require('gun');
 import config from '../config/index';
 
 
