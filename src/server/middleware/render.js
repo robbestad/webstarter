@@ -10,7 +10,7 @@ import App from '../../pages/main'
 // Server-side render
 export default async(ctx, next) => {
 
-  const routing = routes(ctx.stores)
+  const routing = routes(ctx.stores);
   const renderProps = match(routing, ctx.url)
 
   if (renderProps.redirect) {
