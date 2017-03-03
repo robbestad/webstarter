@@ -19,13 +19,46 @@ const context = require('./middleware/context');
 import logger from 'debug';
 import mount from 'koa-mount';
 import serve from 'koa-static'
+const curl = require('curlrequest');
+
+const crypto = require('crypto');
+
+const getContent = (phrase) => new Promise(resolve => {
+  const hash = crypto.createHash('sha256').update(require('../config/secret.json') + phrase).digest('base64');
+  curl.request({
+    url: `https://redis.robbestad.no/content`,
+    headers: {
+      accept: 'application/json',
+      phrase,
+      hash
+    },
+    pretend: false
+  }, function (err, stdout) {
+    resolve(stdout);
+  })
+});
 
 router
+  .get('/api/content',
+    async ctx => {
+      const {phrase} = ctx.headers;
+      ctx.body = await new Promise((resolve, reject) => {
+        getContent(phrase)
+          .then(data => {
+            resolve(data);
+          })
+          .catch(err => {
+            reject(err);
+          })
+      })
+    }
+  )
   .get('*', async function (ctx) {
     if ('/' == ctx.path) await send(ctx, root + "index.html");
     if (ctx.path.endsWith("/page/about")) await send(ctx, root + "index.html");
     await send(ctx, root + ctx.path);
   });
+
 
 const app = new koa()
   .use(favicon(path.join(__dirname, root, 'assets/icons/favicon.ico')))

@@ -2,6 +2,7 @@
 @import "./grid.css";
 @import "./colors.css";
 @import "./typography.css";
+@import "./edit.css";
 
 .grid {
     background: var(--background-color);

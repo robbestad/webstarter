@@ -2,7 +2,7 @@ import Component from 'inferno-component';
 import Inferno from 'inferno';
 import {connect} from 'inferno-mobx'
 
-import '../assets/style/edit.css';
+// import '../assets/style/edit.css';
 import * as constants from "../constants";
 import {asString, asKey} from '../components/helpers/render';
 
