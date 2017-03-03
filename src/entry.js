@@ -15,7 +15,6 @@ autorun(stores);
 
 if (module.hot) {
   autorun(stores);
-  console.log('reload');
 }
 
 // Fetch data on route change

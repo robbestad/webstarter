@@ -82,10 +82,10 @@ config.plugins = [
     'process.env.BROWSER': true,
     'process.env.NODE_ENV': JSON.stringify('production')
   }),
-  new webpack.EnvironmentPlugin([
-    'NODE_ENV',
-    'production'
-  ]),
+  new webpack.EnvironmentPlugin({
+    NODE_ENV: 'production',
+    DEBUG: false
+  }),
   new ManifestPlugin({
     fileName: 'build-manifest.json'
   })

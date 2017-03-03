@@ -25,10 +25,10 @@ Object.assign(config, {
 config.plugins.push(
   new webpack.optimize.OccurrenceOrderPlugin(),
   new webpack.NoEmitOnErrorsPlugin(),
-  new webpack.EnvironmentPlugin([
-    'NODE_ENV',
-    'development'
-  ])
+  new webpack.EnvironmentPlugin({
+    NODE_ENV: 'development', // use 'development' unless process.env.NODE_ENV is defined
+    DEBUG: true
+  })
 );
 
 module.exports = config;

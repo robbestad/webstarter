@@ -7,6 +7,11 @@ import * as constants from "../../constants";
 
 @connect(["counter", constants.CONTENTSTORE])
 export default class Layout extends Component {
+  constructor(props) {
+    super(props);
+    props[constants.CONTENTSTORE].getContent();
+  }
+
   render({children}) {
     const {counter} = this.props;
     const {key} = this.props.params;

@@ -27,11 +27,6 @@ export default class ContentStore {
     }, state);
 
     const data = {...store.get('content')};
-    this.getContent()
-      .then(json => {
-        this.content = JSON.parse(json.data);
-        store.set('content', {...this.content});
-      });
   }
 
   put(key, {title, content}) {
@@ -56,7 +51,10 @@ export default class ContentStore {
     };
     return fetch('/api/content', opts)
       .then(response => response.json())
-      .then(json => json)
+      .then(json => {
+        this.content = JSON.parse(json.data);
+        store.set('content', {...this.content});
+      });
   }
 
   putContent(data) {
