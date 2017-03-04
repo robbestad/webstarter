@@ -12,9 +12,10 @@ const plugins = [
 const store = engine.createStore(storages, plugins);
 import json from '../content/text.json';
 
-// store.clearAll();
-import fetch from 'unfetch';
-
+store.clearAll();
+if ('undefined' === typeof fetch) {
+  const fetch = require('unfetch');
+}
 
 /**
  * @class ContentStore
@@ -45,10 +46,10 @@ export default class ContentStore {
   getContent() {
     const opts = {
       method: 'GET',
-      headers: new Headers({
+      headers: {
         "Content-type": "application/json",
         "phrase": Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 255)
-      })
+      }
     };
     return fetch('/api/content', opts)
       .then(response => response.json())
@@ -63,10 +64,10 @@ export default class ContentStore {
     console.log({...data})
     const opts = {
       method: 'PUT',
-      headers: new Headers({
+      headers: {
         "Content-type": "application/json",
         "phrase": Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 255)
-      }),
+      },
       body: JSON.stringify({...data})
     };
     return fetch('/api/content', opts)
