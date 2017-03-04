@@ -12,9 +12,7 @@ const plugins = [
 const store = engine.createStore(storages, plugins);
 import json from '../content/text.json';
 
-if ('undefined' === typeof fetch) {
-  const fetch = require('unfetch');
-}
+const fetch = require('unfetch');
 
 /**
  * @class ContentStore
