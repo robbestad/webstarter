@@ -12,7 +12,6 @@ const plugins = [
 const store = engine.createStore(storages, plugins);
 import json from '../content/text.json';
 
-store.clearAll();
 if ('undefined' === typeof fetch) {
   const fetch = require('unfetch');
 }
