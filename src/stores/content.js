@@ -11,8 +11,7 @@ const plugins = [
 ];
 const store = engine.createStore(storages, plugins);
 import json from '../content/text.json';
-
-const fetch = require('unfetch');
+import fetch from 'unfetch';
 
 /**
  * @class ContentStore
@@ -35,7 +34,7 @@ export default class ContentStore {
   }
 
   storeContentToRedis() {
-    this.putContent(this.content)
+    this.putContent({key: "content", value: this.content})
       .then(res => console.log(res))
       .catch(err => console.error(err));
   }
@@ -51,21 +50,19 @@ export default class ContentStore {
     return fetch('/api/content', opts)
       .then(response => response.json())
       .then(json => {
-        this.content = JSON.parse(json.data);
+        this.content = json.data;
         store.set('content', {...this.content});
       });
   }
 
   putContent(data) {
-    console.log('putcontent')
-    console.log({...data})
     const opts = {
       method: 'PUT',
       headers: {
         "Content-type": "application/json",
         "phrase": Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 255)
       },
-      body: JSON.stringify({...data})
+      body: JSON.stringify({key: data.key, value: {...data.value}})
     };
     return fetch('/api/content', opts)
       .then(response => response)

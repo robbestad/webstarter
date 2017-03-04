@@ -19,7 +19,7 @@ const crypto = require('crypto');
 const getContent = (phrase) => new Promise(resolve => {
   const hash = crypto.createHash('sha256').update(require('../config/secret.json') + phrase).digest('base64');
   curl.request({
-    url: `https://redis.robbestad.no/content`,
+    url: `https://redis.robbestad.no/data/content`,
     headers: {
       accept: 'application/json',
       phrase,
@@ -35,7 +35,7 @@ const saveContent = (phrase, data) => new Promise(resolve => {
   const hash = crypto.createHash('sha256').update(require('../config/secret.json') + phrase).digest('base64');
   curl.request({
     method: "PUT",
-    url: "https://redis.robbestad.no/content",
+    url: "https://redis.robbestad.no/data",
     headers: {
       accept: 'application/json',
       phrase,
@@ -82,7 +82,6 @@ app.get('/api/content', (req, res) => {
 app.put('/api/content', bodyParser.json(), (req, res) => {
   const {phrase} = req.headers;
   res.set('Content-Type', 'application/json');
-  // if (!JSON.stringify(req.body) === "{}")
   saveContent(phrase, req.body).then(res.send.bind(res));
 });
 
