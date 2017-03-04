@@ -26,7 +26,7 @@ const crypto = require('crypto');
 const getContent = (phrase) => new Promise(resolve => {
   const hash = crypto.createHash('sha256').update(require('../config/secret.json') + phrase).digest('base64');
   curl.request({
-    url: `https://redis.robbestad.no/content`,
+    url: `https://redis.robbestad.no/data/content`,
     headers: {
       accept: 'application/json',
       phrase,
