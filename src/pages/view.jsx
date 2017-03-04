@@ -11,7 +11,7 @@ export default class Main extends Component {
     const {key} = this.props.params;
     const json = content.get()[key];
 
-    return <div>
+    return <div className="inner-left">
       <h2>{json && json.title}</h2>
       <p>
         {json && asString(json.content)}
