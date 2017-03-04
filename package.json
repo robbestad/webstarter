@@ -142,6 +142,7 @@
     "store": "^2.0.3",
     "sw-precache-webpack-plugin": "^0.9.0",
     "trash-cli": "^1.4.0",
+    "unfetch": "^2.1.2",
     "url-loader": "^0.5.7",
     "webpack-dev-middleware": "^1.10.0",
     "webpack-dev-server": "^2.3.0",

@@ -13,6 +13,7 @@ const store = engine.createStore(storages, plugins);
 import json from '../content/text.json';
 
 // store.clearAll();
+import fetch from 'unfetch';
 
 
 /**
