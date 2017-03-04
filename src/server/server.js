@@ -55,7 +55,7 @@ router
   )
   .get('*', async function (ctx) {
     if ('/' == ctx.path) await send(ctx, root + "index.html");
-    if (ctx.path.endsWith("/page/about")) await send(ctx, root + "index.html");
+    if (ctx.path.endsWith("/page/*")) await send(ctx, root + "index.html");
     await send(ctx, root + ctx.path);
   });
 
