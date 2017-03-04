@@ -2,6 +2,7 @@ const t = require('inferno-create-element');
 import {Link} from 'inferno-router';
 import Component from 'inferno-component';
 import {connect} from 'inferno-mobx'
+import menu from './menu';
 
 @connect(['counter', 'eventLog'])
 export default class Main extends Component {
@@ -15,10 +16,13 @@ export default class Main extends Component {
     const {eventLog} = this.props;
     let count = eventLog.getEvents().peek().length;
 
-    return t('div', null,
-      t('h2', null, 'Hello dear user ....:)'),
-      t('div', null, `${count}`),
-    );
+    return t('div', {},
+      t('div', {className: 'col-12'},
+        t('div', {className: 'content'},
+          t('p', {className: 'inner-left'}, 'Welcome')
+        )),
+      t(menu)
+    )
   }
 
 }
