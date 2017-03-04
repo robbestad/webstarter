@@ -46,19 +46,7 @@ export default class Layout extends Component {
 
       </div>
       <div className="row">
-        <div className="col-4 border-left border-bottom ">
-          <div className="content">
-            <div className="inner-left">
-              <ul>
-                {
-                  Object.keys(contentStore.get()).map(item => <li><Link to={`/page/view/${item}`}>{item}</Link></li>)
-                }
-              </ul>
-            </div>
-
-          </div>
-        </div>
-        <div className="col-8 border-left border-bottom border-right">
+        <div className="col-12 border-left border-bottom border-right">
           <div className="content">
             {children ? children : null}
           </div>
